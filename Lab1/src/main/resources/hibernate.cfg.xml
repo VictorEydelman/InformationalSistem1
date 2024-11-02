@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/studs</property>
+        <property name="hibernate.connection.username">s291485</property>
+        <property name="hibernate.connection.password">qz6XMfGNKAgNOWkq</property>
+
+        <mapping class="org.example.lab1.entities.User"/>
+        <mapping class="org.example.lab1.entities.LabWork"/>
+        <mapping class="org.example.lab1.entities.Coordinates"/>
+        <mapping class="org.example.lab1.entities.Discipline"/>
+        <mapping class="org.example.lab1.entities.Person"/>
+        <mapping class="org.example.lab1.entities.Location"/>
+        <mapping class="org.example.lab1.entities.ToRoleAdmin"/>
+
+    </session-factory>
+</hibernate-configuration>
