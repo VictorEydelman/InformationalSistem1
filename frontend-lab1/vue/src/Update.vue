@@ -3,6 +3,7 @@
     <div>
       <div>
         <label>Name</label>
+        <p>{{this.dot}}</p>
         <input type="text" v-model="name">
         <h7 v-if="namestatus && name===''" style="color: red">fsdfs</h7>
       </div>
@@ -119,17 +120,19 @@
       <div>
         <input type="checkbox" v-model="permission">
       </div>
-      <button type="submit" @click="update(this.id,this.coordinates_id,this.discipline_id,this.person)">Добавить лабораторную работу</button>
+      <button type="submit" @click="update()">Добавить лабораторную работу</button>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
+      dot:"",
       id: 1,
-      name: "",
+      name: this.dot.name,
       namestatus: false,
       coordinates_x: 0,
       coordinates_y: 0,
@@ -159,10 +162,16 @@ export default {
       permission: true
     }
   },
+  computed: {
+    receivedData() {
+      return this.$route.params.dot;
+    },
+  },
   methods: {
-    update(id, coordinates_id, discipline_id, person) {
-      alert(coordinates_id)
-      alert(discipline_id)
+    update() {
+      alert(localStorage.getItem('dot'))
+      this.dot=localStorage.getItem('dot')
+      alert(this.dot.name)
       fetch("http://localhost:1298/api/LabWork/update", {
         method: "POST",
         headers: new Headers({
@@ -170,9 +179,9 @@ export default {
           'Authorization': 'Bearer ' + localStorage.getItem("jwt")
         }),
         body: JSON.stringify({
-          id: id,
+          id: 1,
           name: this.name,
-          coordinates_id: coordinates_id,
+          coordinates_id: this.dot.coordinates_id,
           coordinates_x: this.coordinates_x,
           coordinates_y: this.coordinates_y,
           description: this.description,
@@ -267,7 +276,16 @@ export default {
       }
       alert(t)
       return t
+    },
+    d(){
+      this.dot=localStorage.getItem('dot')
+      this.id=this.dot.id
+      this.name=this.dot.name
+      alert(this.dot.id)
     }
+  },
+  mounted(){
+    this.d()
   }
 }
 </script>

@@ -170,7 +170,7 @@
             <td>{{dot.person.weight}}</td>
             <td>{{dot.person.nationality}}</td>
             <td>{{dot.permission}}</td>
-            <td><button type="submit"  v-if="makeUpdate(dot.username,dot.permission)" @click="update(dot.id,dot.coordinates.id,dot.discipline.id,dot.person)">Обновить</button></td>
+            <td><button type="submit"  v-if="makeUpdate(dot.username,dot.permission)" @click="update(dot)">Обновить</button></td>
             <td><button type="submit" v-if="makeUpdate(dot.username,dot.permission)" @click="del(dot.id)">Удалить</button></td>
           </tr>
         </tbody>
@@ -223,60 +223,11 @@ export default {
       const routerData = this.$router.resolve({name: 'add'})
       window.open(routerData.href,"_blank")
     },
-    update(id,coordinates_id,discipline_id,person){
-      alert(coordinates_id)
-      alert(discipline_id)
-      fetch("http://localhost:1298/api/LabWork/update", {
-        method: "POST",
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Authorization':'Bearer ' + localStorage.getItem("jwt")
-        }),
-        body: JSON.stringify({
-          id: id,
-          name: this.name,
-          coordinates_id:coordinates_id,
-          coordinates_x: this.coordinates_x,
-          coordinates_y: this.coordinates_y,
-          description: this.description,
-          difficulty: this.difficulty,
-          discipline_id:discipline_id,
-          discipline_name: this.discipline_name,
-          discipline_lectureHours: this.discipline_lectureHours,
-          minimalPoint: this.minimalPoint,
-          averagePoint: this.averagePoint,
-          person_id: person.id,
-          person_name: this.person_name,
-          person_eyeColor: this.person_eyeColor,
-          person_hairColor: this.person_hairColor,
-          person_location_id: person.location.id,
-          person_location_x: this.person_location_x,
-          person_location_y: this.person_location_y,
-          person_location_z: this.person_location_z,
-          person_weight: this.person_weight,
-          person_nationality: this.person_nationality,
-          idRelatedLab: this.idRelatedLab,
-          permission: this.permission
-        })
-      }).then((response) => {
-        if(response.ok) {
-          fetch("http://localhost:1298/api/LabWork/get", {
-            method: "GET",
-            headers: new Headers({
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem("jwt")
-            })
-          }).then(request => {
-            alert(request)
-            return request.json()
-          }).then(request => {
-              this.dots = request
-            }
-          )
-        } else {
-          alert("Неверно введённые данные")
-        }
-      })
+    update(dot){
+      alert(dot.name)
+      localStorage.setItem("dot",dot)
+      const routerData = this.$router.resolve({name: 'update'})
+      window.open(routerData.href,"_blank")
     },
     del(id){
       fetch(`http://localhost:1298/api/LabWork/delete/${id}`, {
@@ -435,7 +386,7 @@ export default {
       })
     }
   },
-  /*mounted: function (){
+  mounted: function (){
     window.setInterval(()=>{
       fetch("http://localhost:1298/api/LabWork/get", {
         method: "GET",
@@ -451,8 +402,8 @@ export default {
           this.dots=request
         }
       )
-    },2000)
-  }*/
+    },60000)
+  }
 }
 </script>
 
