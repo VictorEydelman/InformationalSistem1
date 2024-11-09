@@ -131,98 +131,86 @@ export default {
   data() {
     return {
       dot:"",
-      id: 1,
-      name: this.dot.name,
+      id: this.id,
+      name: this.name,
       namestatus: false,
-      coordinates_x: 0,
-      coordinates_y: 0,
-      description: "",
+      coordinates_id:this.coordinates_id,
+      coordinates_x: this.coordinates_x,
+      coordinates_y: this.coordinates_y,
+      description: this.description,
       descriptionstatus: false,
-      difficulty: "-",
+      difficulty: this.difficulty,
       difficultystatus: false,
-      discipline_name: "",
+      discipline_id:this.discipline_id,
+      discipline_name: this.discipline_name,
       discipline_namestatus: false,
-      discipline_lectureHours: 1,
-      minimalPoint: 1,
-      averagePoint: 1,
-      person_name: "",
+      discipline_lectureHours: this.discipline_lectureHours,
+      minimalPoint: this.minimalPoint,
+      averagePoint: this.averagePoint,
+      person_id:this.person_id,
+      person_name: this.person_name,
       person_namestatus: false,
-      person_eyeColor: "-",
+      person_eyeColor: this.person_eyeColor,
       person_eyeColorstatus: false,
-      person_hairColor: "-",
+      person_hairColor: this.person_hairColor,
       person_hairColorstatus: false,
-      person_location_x: 1,
-      person_location_y: 1,
-      person_location_z: 1,
-      person_weight: 1,
-      person_nationality: "-",
+      person_location_id:this.person_location_id,
+      person_location_x: this.person_location_x,
+      person_location_y: this.person_location_y,
+      person_location_z: this.person_location_z,
+      person_weight: this.person_weight,
+      person_nationality: this.person_nationality,
       person_nationalitystatus: false,
-      dots: new Array(0),
-      idRelatedLab: 1,
-      permission: true
+      creation_date:""
     }
-  },
-  computed: {
-    receivedData() {
-      return this.$route.params.dot;
-    },
   },
   methods: {
     update() {
-      alert(localStorage.getItem('dot'))
-      this.dot=localStorage.getItem('dot')
-      alert(this.dot.name)
-      fetch("http://localhost:1298/api/LabWork/update", {
-        method: "POST",
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + localStorage.getItem("jwt")
-        }),
-        body: JSON.stringify({
-          id: 1,
-          name: this.name,
-          coordinates_id: this.dot.coordinates_id,
-          coordinates_x: this.coordinates_x,
-          coordinates_y: this.coordinates_y,
-          description: this.description,
-          difficulty: this.difficulty,
-          discipline_id: discipline_id,
-          discipline_name: this.discipline_name,
-          discipline_lectureHours: this.discipline_lectureHours,
-          minimalPoint: this.minimalPoint,
-          averagePoint: this.averagePoint,
-          person_id: person.id,
-          person_name: this.person_name,
-          person_eyeColor: this.person_eyeColor,
-          person_hairColor: this.person_hairColor,
-          person_location_id: person.location.id,
-          person_location_x: this.person_location_x,
-          person_location_y: this.person_location_y,
-          person_location_z: this.person_location_z,
-          person_weight: this.person_weight,
-          person_nationality: this.person_nationality,
-          idRelatedLab: this.idRelatedLab,
-          permission: this.permission
+      //alert(localStorage.getItem('dot'))
+      //this.dot=localStorage.getItem('dot')
+     // alert(this.dot.name)
+      if(this.validat()) {
+        fetch("http://localhost:1298/api/LabWork/update", {
+          method: "POST",
+          headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+          }),
+          body: JSON.stringify({
+            id: this.id,
+            name: this.name,
+            coordinates_id: this.coordinates_id,
+            coordinates_x: this.coordinates_x,
+            coordinates_y: this.coordinates_y,
+            description: this.description,
+            difficulty: this.difficulty,
+            discipline_id: this.discipline_id,
+            discipline_name: this.discipline_name,
+            discipline_lectureHours: this.discipline_lectureHours,
+            minimalPoint: this.minimalPoint,
+            averagePoint: this.averagePoint,
+            person_id: this.person_id,
+            person_name: this.person_name,
+            person_eyeColor: this.person_eyeColor,
+            person_hairColor: this.person_hairColor,
+            person_location_id: this.person_location_id,
+            person_location_x: this.person_location_x,
+            person_location_y: this.person_location_y,
+            person_location_z: this.person_location_z,
+            person_weight: this.person_weight,
+            person_nationality: this.person_nationality,
+            permission: this.permission,
+            username: this.username,
+            creation_date:this.creation_date
+          })
+        }).then((response) => {
+          if (response.ok) {
+            window.close()
+          } else {
+            alert("Неверно введённые данные")
+          }
         })
-      }).then((response) => {
-        if (response.ok) {
-          fetch("http://localhost:1298/api/LabWork/get", {
-            method: "GET",
-            headers: new Headers({
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem("jwt")
-            })
-          }).then(request => {
-            alert(request)
-            return request.json()
-          }).then(request => {
-              this.dots = request
-            }
-          )
-        } else {
-          alert("Неверно введённые данные")
-        }
-      })
+      }
     },
     validat() {
       alert(123131)
@@ -278,14 +266,49 @@ export default {
       return t
     },
     d(){
-      this.dot=localStorage.getItem('dot')
-      this.id=this.dot.id
-      this.name=this.dot.name
-      alert(this.dot.id)
+      //this.dot=sessionStorage.getItem('dot')
+      //this.dot=JSON.parse(this.dot)
+      //this.dot=Object.values(this.dot)
+      //this.id=this.dot[0]
+     // this.name=this.dot[1]
+      alert(this.dot)
     }
   },
-  mounted(){
-    this.d()
+  created(){
+    //this.dot=(JSON.parse(sessionStorage.getItem('dot')))
+    this.dot=Object.values(JSON.parse(sessionStorage.getItem('dot')))
+    this.id=this.dot[0]
+    this.name=this.dot[1]
+    this.coordinates_id=Object.values(this.dot[2])[0]
+    this.coordinates_x=Object.values(this.dot[2])[1]
+    this.coordinates_y=Object.values(this.dot[2])[2]
+    this.creation_date=this.dot[3]
+    this.description=this.dot[4]
+    this.difficulty=this.dot[5]
+    if(this.dot[6]!==null) {
+      this.discipline_id = Object.values(this.dot[6])[0]
+      this.discipline_name = Object.values(this.dot[6])[1]
+      this.discipline_lectureHours = Object.values(this.dot[6])[2]
+    } else {
+      this.discipline_id = 0
+      this.discipline_name = ""
+      this.discipline_lectureHours = 1
+    }
+    this.minimalPoint=this.dot[7]
+    this.averagePoint=this.dot[8]
+    let person=Object.values(this.dot[9])
+    this.person_id=person[0]
+    this.person_name=person[1]
+    this.person_eyeColor=person[2]
+    this.person_hairColor=person[3]
+    this.person_location_id=Object.values(person[4])[0]
+    this.person_location_x=Object.values(person[4])[1]
+    this.person_location_y=Object.values(person[4])[2]
+    this.person_location_z=Object.values(person[4])[3]
+    this.person_weight=person[5]
+    this.person_nationality=person[6]
+    this.permission=this.dot[10]
+    this.username=this.dot[11]
   }
 }
 </script>

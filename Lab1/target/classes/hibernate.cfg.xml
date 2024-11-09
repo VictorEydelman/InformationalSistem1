@@ -16,6 +16,11 @@
         <mapping class="org.example.lab1.entities.Person"/>
         <mapping class="org.example.lab1.entities.Location"/>
         <mapping class="org.example.lab1.entities.ToRoleAdmin"/>
+        <mapping class="org.example.lab1.entities.HistoryLabWorks"/>
+        <mapping class="org.example.lab1.entities.HistoryCoordinates"/>
+        <mapping class="org.example.lab1.entities.HistoryDiscipline"/>
+        <mapping class="org.example.lab1.entities.HistoryPerson"/>
+        <mapping class="org.example.lab1.entities.HistoryLocation"/>
 
     </session-factory>
 </hibernate-configuration>

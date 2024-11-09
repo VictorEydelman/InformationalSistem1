@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="169c4230-144d-4d1d-8ee8-1dda6ca05874" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/FilterByDesciplation.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/FilterByIndexResult.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/Add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/Add.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/First.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/First.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/Main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/Update.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/Update.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,6 +178,14 @@
       <workItem from="1730543643811" duration="3005000" />
       <workItem from="1730557464567" duration="483000" />
       <workItem from="1730567808786" duration="3074000" />
+      <workItem from="1730620455377" duration="2442000" />
+      <workItem from="1730627239870" duration="12545000" />
+      <workItem from="1730705467728" duration="3511000" />
+      <workItem from="1730992689807" duration="20713000" />
+      <workItem from="1731053519440" duration="17634000" />
+      <workItem from="1731079580531" duration="6644000" />
+      <workItem from="1731138940613" duration="6964000" />
+      <workItem from="1731149681610" duration="3259000" />
     </task>
     <servers />
   </component>
@@ -201,5 +214,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="io.jsonwebtoken.ExpiredJwtException" package="io.jsonwebtoken" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table
-public class ToRoleAdmin {
+public class ToRoleAdmin{
     @Getter
     @Setter
     @Id

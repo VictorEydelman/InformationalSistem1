@@ -155,7 +155,6 @@ export default {
       person_nationality: "-",
       person_nationalitystatus: false,
       dots: new Array(0),
-      idRelatedLab: 1,
       permission: true
     }
   },
@@ -187,7 +186,6 @@ export default {
             person_location_z: this.person_location_z,
             person_weight: this.person_weight,
             person_nationality: this.person_nationality,
-            idRelatedLab: this.idRelatedLab,
             permission: this.permission
           })
         }).then((response) => {
