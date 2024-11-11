@@ -37,11 +37,20 @@ public class FilterController {
     @DeleteMapping(value = "/deleteByMinimalPoint/{minimalPoint}", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<String> deleteByMinimalPoint(@PathVariable long minimalPoint, HttpServletRequest request) {
         BuilderHistory builderHistory =new BuilderHistory();
-        LabWork labWork =labWorkService.findByMinimalPoint(minimalPoint);
-        User user = userService.getByUsername(jwtService.extractUsername(jwtService.resolveToken(request)));
-        builderHistory.delete(labWork,user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,
-                historyLocationService,historyPersonService);
-        labWorkService.delete(labWork.getId(), user.getUsername(), coordinateSevice, disciplineService, personService, locationService);
+        System.out.println(minimalPoint);
+        System.out.println(1234556772);
+        LabWork labWork = labWorkService.findByMinimalPoint(minimalPoint);
+        if(labWork!=null) {
+            User user = userService.getByUsername(jwtService.extractUsername(jwtService.resolveToken(request)));
+            System.out.println(1234556773);
+
+            builderHistory.add(labWork, "DELETE", user.getUsername(), historyLabWorkService, historyCoordinateSevice, historyDisciplineService,
+                    historyLocationService, historyPersonService);
+            System.out.println(1234556774);
+
+            labWorkService.delete(labWork.getId(), user.getUsername(), coordinateSevice, disciplineService, personService, locationService);
+            System.out.println(1234556775);
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @GetMapping(value = "/groupById", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -61,7 +70,7 @@ public class FilterController {
         }
         User user = userService.getByUsername(jwtService.extractUsername(jwtService.resolveToken(request)));
         BuilderHistory builderHistory =new BuilderHistory();
-        builderHistory.update(labWork,user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
+        builderHistory.add(labWork,"UPDATE",user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
         labWorkService.update(labWork,user.getUsername());
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -73,7 +82,7 @@ public class FilterController {
             labWork.setDiscipline(null);
             labWorkService.update(labWork,user.getUsername());
             BuilderHistory builderHistory =new BuilderHistory();
-            builderHistory.update(labWork,user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
+            builderHistory.add(labWork,"UPDATE",user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Нет доступа к изменению",HttpStatus.BAD_REQUEST);

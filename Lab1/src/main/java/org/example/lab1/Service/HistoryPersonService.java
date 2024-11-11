@@ -20,7 +20,7 @@ public class HistoryPersonService {
         Transaction tx = session.beginTransaction();
         //user.setId(1L);
         System.out.print(historyPerson);
-        session.merge(historyPerson);
+        session.persist(historyPerson);
         tx.commit();
     }
     public void update(HistoryPerson historyPerson){

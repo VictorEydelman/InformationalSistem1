@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="169c4230-144d-4d1d-8ee8-1dda6ca05874" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/FilterByDesciplation.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/FilterByIndexResult.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/Add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/Add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/First.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/First.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/Main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/Update.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/Update.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,40 +42,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.Lab1Application.executor": "Run",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/veyde/OneDrive/Документы/Работы ИТМО/ИС/Lab1/src/main/java/org/example",
-    "last_opened_file_path": "C:/Users/veyde/OneDrive - ITMO UNIVERSITY/Работы ИТМО/ИС/InformationalSistem1/Lab1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15544042",
-    "project.structure.side.proportion": "0.191",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Lab1Application.executor&quot;: &quot;Run&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/veyde/OneDrive/Документы/Работы ИТМО/ИС/Lab1/src/main/java/org/example&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/veyde/OneDrive - ITMO UNIVERSITY/Работы ИТМО/ИС/DB2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15544042&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.191&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\veyde\OneDrive - ITMO UNIVERSITY\Работы ИТМО\ИС\InformationalSistem1\Lab1\src\main\java\org\example\lab1" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.lab1.entities.DTO" />
       <recent name="org.example.lab1.users" />
       <recent name="org.example.lab1.entities" />
       <recent name="org.example.lab1.DTO" />
@@ -186,6 +186,12 @@
       <workItem from="1731079580531" duration="6644000" />
       <workItem from="1731138940613" duration="6964000" />
       <workItem from="1731149681610" duration="3259000" />
+      <workItem from="1731158803359" duration="4747000" />
+      <workItem from="1731243562857" duration="9926000" />
+      <workItem from="1731315590845" duration="5069000" />
+      <workItem from="1731322238210" duration="653000" />
+      <workItem from="1731323540961" duration="789000" />
+      <workItem from="1731330300383" duration="2519000" />
     </task>
     <servers />
   </component>

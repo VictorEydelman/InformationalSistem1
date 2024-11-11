@@ -1,7 +1,8 @@
-
-
 <template>
 <div>
+  <div>
+    <button type="submit" @click="close">Закрыть вкладку</button>
+  </div>
   <div>
     <table>
       <thead>
@@ -41,6 +42,9 @@ export default {
       }).then((response) => {
         return response.text()
       })
+    },
+    close(){
+      this.$router.push({name: 'main'});
     }
   },
   mounted: function (){

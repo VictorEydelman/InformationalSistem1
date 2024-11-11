@@ -22,6 +22,9 @@ export default {
           this.dots=request
         }
       )
+    },
+    close(){
+      this.$router.push({name: 'main'});
     }
   },
 }
@@ -29,6 +32,9 @@ export default {
 
 <template>
   <div>
+    <div>
+      <button type="submit" @click="close">Закрыть вкладку</button>
+    </div>
     <div>
       <input type="text" @input="filter" v-model="description">
     </div>

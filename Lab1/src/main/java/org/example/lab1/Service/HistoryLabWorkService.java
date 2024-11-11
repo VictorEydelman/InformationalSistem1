@@ -30,7 +30,7 @@ public class HistoryLabWorkService {
         //System.out.print(session);
         System.out.println(historyLabWork);
 
-        session.persist(historyLabWork);
+        session.merge(historyLabWork);
         tx.commit();
     }
 

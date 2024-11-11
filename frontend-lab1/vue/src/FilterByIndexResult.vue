@@ -21,6 +21,9 @@ export default {
           this.dots=request
         }
       )
+    },
+    close(){
+      this.$router.push({name: 'main'});
     }
   },
   created() {
@@ -31,6 +34,9 @@ export default {
 
 <template>
   <div>
+    <div>
+      <button type="submit" @click="close">Закрыть вкладку</button>
+    </div>
     <table>
       <thead>
       <th>id</th>

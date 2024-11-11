@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class DisciplineDTO {
+    int id;
     @NotBlank
     private String name; //Поле не может быть null, Строка не может быть пустой
     @NotNull

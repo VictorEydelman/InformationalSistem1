@@ -1,9 +1,11 @@
 <template>
   <div>
     <div>
+      <button type="submit" @click="close">Закрыть вкладку</button>
+    </div>
+    <div>
       <div>
         <label>Name</label>
-        <p>{{this.dot}}</p>
         <input type="text" v-model="name">
         <h7 v-if="namestatus && name===''" style="color: red">fsdfs</h7>
       </div>
@@ -38,6 +40,9 @@
         <h7 v-if="difficultystatus && difficulty==='-'" style="color: red">fsdfs</h7>
       </div>
       <div>
+        <input type="checkbox" v-model="disciplinestatus">
+      </div>
+      <div v-if="disciplinestatus">
         <label>Discipline</label>
         <div>
           <label>Name</label>
@@ -60,6 +65,9 @@
         <h7 v-if="averagePoint<1" style="color: red">fsdfs</h7>
       </div>
       <div>
+        <input type="checkbox" v-model="personstatus">
+      </div>
+      <div v-if="personstatus">
         <label>Person</label>
         <div>
           <label>Name</label>
@@ -117,16 +125,12 @@
           <h7 v-if="person_nationalitystatus && person_nationality==='-'" style="color: red">fsdfs</h7>
         </div>
       </div>
-      <div>
-        <input type="checkbox" v-model="permission">
-      </div>
-      <button type="submit" @click="update()">Добавить лабораторную работу</button>
+      <button type="submit" @click="update()">Обновить лабораторную работу</button>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -161,7 +165,9 @@ export default {
       person_weight: this.person_weight,
       person_nationality: this.person_nationality,
       person_nationalitystatus: false,
-      creation_date:""
+      creation_date:"",
+      disciplinestatus:false,
+      personstatus:false
     }
   },
   methods: {
@@ -179,28 +185,15 @@ export default {
           body: JSON.stringify({
             id: this.id,
             name: this.name,
-            coordinates_id: this.coordinates_id,
-            coordinates_x: this.coordinates_x,
-            coordinates_y: this.coordinates_y,
+            coordinates:{id: this.coordinates_id,
+              x: this.coordinates_x, y: this.coordinates_y},
             description: this.description,
             difficulty: this.difficulty,
-            discipline_id: this.discipline_id,
-            discipline_name: this.discipline_name,
-            discipline_lectureHours: this.discipline_lectureHours,
+            discipline:this.disciplineadd(),
             minimalPoint: this.minimalPoint,
             averagePoint: this.averagePoint,
-            person_id: this.person_id,
-            person_name: this.person_name,
-            person_eyeColor: this.person_eyeColor,
-            person_hairColor: this.person_hairColor,
-            person_location_id: this.person_location_id,
-            person_location_x: this.person_location_x,
-            person_location_y: this.person_location_y,
-            person_location_z: this.person_location_z,
-            person_weight: this.person_weight,
-            person_nationality: this.person_nationality,
+            person: this.personadd(),
             permission: this.permission,
-            username: this.username,
             creation_date:this.creation_date
           })
         }).then((response) => {
@@ -265,18 +258,33 @@ export default {
       alert(t)
       return t
     },
-    d(){
-      //this.dot=sessionStorage.getItem('dot')
-      //this.dot=JSON.parse(this.dot)
-      //this.dot=Object.values(this.dot)
-      //this.id=this.dot[0]
-     // this.name=this.dot[1]
-      alert(this.dot)
+    disciplineadd(){
+      if(!this.disciplinestatus){
+        return null
+      } else {
+        return {name:this.discipline_name,lectureHours:this.discipline_lectureHours}
+      }
+    },
+    personadd(){
+      if(!this.personstatus){
+        return null
+      } else {
+        return {name: this.person_name,
+          eyeColor: this.person_eyeColor,
+          hairColor: this.person_hairColor,
+          location: {x: this.person_location_x,
+            y: this.person_location_y, z: this.person_location_z},
+          weight: this.person_weight,
+          nationality: this.person_nationality}
+      }
+    },
+    close(){
+      this.$router.push({name: 'main'});
     }
   },
   created(){
     //this.dot=(JSON.parse(sessionStorage.getItem('dot')))
-    this.dot=Object.values(JSON.parse(sessionStorage.getItem('dot')))
+    this.dot=Object.values(JSON.parse(localStorage.getItem('dot')))
     this.id=this.dot[0]
     this.name=this.dot[1]
     this.coordinates_id=Object.values(this.dot[2])[0]
@@ -285,15 +293,10 @@ export default {
     this.creation_date=this.dot[3]
     this.description=this.dot[4]
     this.difficulty=this.dot[5]
-    if(this.dot[6]!==null) {
-      this.discipline_id = Object.values(this.dot[6])[0]
-      this.discipline_name = Object.values(this.dot[6])[1]
-      this.discipline_lectureHours = Object.values(this.dot[6])[2]
-    } else {
-      this.discipline_id = 0
-      this.discipline_name = ""
-      this.discipline_lectureHours = 1
-    }
+    alert(Object.values(this.dot[6]))
+    this.discipline_id = Object.values(this.dot[6])[0]
+    this.discipline_name = Object.values(this.dot[6])[1]
+    this.discipline_lectureHours = Object.values(this.dot[6])[2]
     this.minimalPoint=this.dot[7]
     this.averagePoint=this.dot[8]
     let person=Object.values(this.dot[9])
@@ -309,6 +312,8 @@ export default {
     this.person_nationality=person[6]
     this.permission=this.dot[10]
     this.username=this.dot[11]
+    this.disciplinestatus=(this.discipline_id!==0)
+    this.personstatus=(this.person_id!==0)
   }
 }
 </script>

@@ -1,9 +1,14 @@
 <template>
   <div>
     <div>
+      <p>{{this.username}}</p>
+      <button type="submit" @click="close">Выйти</button>
+    </div>
+    <div>
       <button v-if="role_admin_if()" type="submit" @click="role_admin_addAdmin">addAdmin</button>
       <button v-else type="submit" @click="role_admin_add">add</button>
-      <button type="submit" @click="filerbyminimalpoint(1)"></button>
+      <input type="number" v-model="filerminimalpoint">
+      <button type="submit" @click="filerbyminimalpoint()"></button>
       <button type="submit" @click="filerbyId"></button>
       <button type="submit" @click="filterByDescription"></button>
     </div>
@@ -60,36 +65,36 @@
       <table border="1">
         <thead>
           <tr>
-          <th rowspan="3">name</th>
+          <th rowspan="3" @click="sortTable('name')">name</th>
           <th rowspan="2" colspan="2">coordinates</th>
-          <th rowspan="3">creationDate</th>
-          <th rowspan="3">description</th>
-          <th rowspan="3">difficulty</th>
+          <th rowspan="3" @click="sortTable('creationDate')">creationDate</th>
+          <th rowspan="3" @click="sortTable('description')">description</th>
+          <th rowspan="3" @click="sortTable('difficulty')">difficulty</th>
           <th rowspan="2" colspan="2">discipline</th>
-          <th rowspan="3">minimal Point</th>
-          <th rowspan="3">average Point</th>
+          <th rowspan="3" @click="sortTable('minimalPoint')">minimal Point</th>
+          <th rowspan="3" @click="sortTable('averagePoint')">average Point</th>
           <th colspan="8">person</th>
           </tr>
         <tr>
-          <th rowspan="2">name</th>
-          <th rowspan="2">eyeColor</th>
-          <th rowspan="2">hairColor</th>
+          <th rowspan="2" @click="sortTable('person_name')">name</th>
+          <th rowspan="2" @click="sortTable('person_eyeColor')">eyeColor</th>
+          <th rowspan="2" @click="sortTable('person_eyeColor')">hairColor</th>
           <th colspan="3">location</th>
-          <th rowspan="2">weight</th>
-          <th rowspan="2">nationality</th>
+          <th rowspan="2" @click="sortTable('person_weight')">weight</th>
+          <th rowspan="2" @click="sortTable('person_nationality')">nationality</th>
         </tr>
         <tr>
-          <th>x</th>
-          <th>y</th>
-          <th>name</th>
-          <th>lecture Hours</th>
-          <th>x</th>
-          <th>y</th>
-          <th>z</th>
+          <th @click="sortTable('coordinates.x')">x</th>
+          <th @click="sortTable('coordinates.y')">y</th>
+          <th @click="sortTable('discipline_name')">name</th>
+          <th @click="sortTable('discipline_lectureHours')">lecture Hours</th>
+          <th @click="sortTable('person_location_x')">x</th>
+          <th @click="sortTable('person_location_y')">y</th>
+          <th @click="sortTable('person_location_z')">z</th>
         </tr>
         </thead>
         <tbody>
-          <tr v-for="dot in filteredEmployees" :key="dot">
+          <tr v-for="dot in sortedData" :key="dot">
             <td>{{dot.name}}</td>
             <td>{{dot.coordinates.x}}</td>
             <td>{{dot.coordinates.y}}</td>
@@ -98,17 +103,18 @@
             <td>{{dot.difficulty}}</td>
             <td v-if="dot.discipline.name!=='-'" >{{dot.discipline.name}}</td>
             <td v-if="dot.discipline.name!=='-'">{{dot.discipline.lectureHours}}</td>
-            <td v-else colspan="2">{{dot.discipline.name}}</td>
+            <td v-else colspan="2">-</td>
             <td>{{dot.minimalPoint}}</td>
             <td>{{dot.averagePoint}}</td>
-            <td>{{dot.person.name}}</td>
-            <td>{{dot.person.eyeColor}}</td>
-            <td>{{dot.person.hairColor}}</td>
-            <td>{{dot.person.location.x}}</td>
-            <td>{{dot.person.location.y}}</td>
-            <td>{{dot.person.location.z}}</td>
-            <td>{{dot.person.weight}}</td>
-            <td>{{dot.person.nationality}}</td>
+            <td v-if="dot.person.name!=='-'">{{dot.person.name}}</td>
+            <td v-if="dot.person.name!=='-'">{{dot.person.eyeColor}}</td>
+            <td v-if="dot.person.name!=='-'">{{dot.person.hairColor}}</td>
+            <td v-if="dot.person.name!=='-'">{{dot.person.location.x}}</td>
+            <td v-if="dot.person.name!=='-'">{{dot.person.location.y}}</td>
+            <td v-if="dot.person.name!=='-'">{{dot.person.location.z}}</td>
+            <td v-if="dot.person.name!=='-'">{{dot.person.weight}}</td>
+            <td v-if="dot.person.name!=='-'">{{dot.person.nationality}}</td>
+            <td v-else colspan="8">-</td>
             <td><button type="submit" v-if="makeUpdate(dot.username,dot.permission)" @click="update(dot)">Обновить</button>
             <button type="submit" v-if="makeUpdate(dot.username,dot.permission)" @click="del(dot.id)">Удалить</button>
               <div>
@@ -177,6 +183,10 @@ export default {
       person_weightFilter: null,
       person_nationalityFilter: "-",
       permissionFilter: "-",
+      filerminimalpoint:0,
+      username:localStorage.getItem("username"),
+      sortKey: '',
+      sortOrder: 1
     }
   },
   methods:{
@@ -185,8 +195,8 @@ export default {
       window.open(routerData.href,"_blank")
     },
     update(dot){
-      alert(JSON.stringify(dot))
-      sessionStorage.setItem("dot",JSON.stringify(dot))
+      alert(Object.values(Object.values(JSON.stringify(dot))[9]))
+      localStorage.setItem("dot",JSON.stringify(dot))
       const routerData = this.$router.resolve({name: 'update'})
       window.open(routerData.href,"_blank")
     },
@@ -224,29 +234,14 @@ export default {
     role_admin_if(){
       return localStorage.getItem('role') === 'ROLE_ADMIN'
     },
-    filerbyminimalpoint(minimalpoint){
-      fetch(`http://localhost:1298/api/filter/deleteByMinimalPoint/${minimalpoint}`, {
+    filerbyminimalpoint(){
+      fetch(`http://localhost:1298/api/filter/deleteByMinimalPoint/${this.filerminimalpoint}`, {
         method: "DELETE",
         headers: new Headers({
           'Content-Type': 'application/json',
           'Authorization':'Bearer ' + localStorage.getItem("jwt")
         })
       }).then(() => {
-        fetch("http://localhost:1298/api/LabWork/get", {
-          method: "GET",
-          headers: new Headers({
-            'Content-Type': 'application/json',
-            'Authorization':'Bearer ' + localStorage.getItem("jwt")
-          })
-        }).then(request =>
-        {
-          alert(request)
-          return request.json()
-        }).then(request =>
-          {
-            this.dots=request
-          }
-        )
       })
     },
     filerbyId(){
@@ -283,9 +278,19 @@ export default {
       const date = new Date(dateString);
       return date.toLocaleString('ru-RU', options);
     },
-    checkdiscipline(disc){
-      if(disc==null){
-      }
+    close(){
+      this.$router.push({name: 'first'});
+      localStorage.setItem("jwt","")
+      localStorage.setItem("username", "")
+      localStorage.setItem("role", "")
+    },
+    sortTable(key) {
+      this.sortOrder = this.sortKey === key ? -this.sortOrder : 1;
+      this.sortKey = key;
+    },
+    sortedDif(a,b){
+      let n={"EASY":1,"NORMAL":2,"HARD":3,"VERY_HARD":4,"IMPOSSIBLE":5}
+      return n[a]>n[b]
     }
   },
   mounted: function (){
@@ -310,7 +315,11 @@ export default {
     filteredEmployees() {
       return this.dots.filter(dot => {
         if(dot.discipline==null){
-          dot.discipline={name:"-",lectureHours:-1}
+          dot.discipline={id:0,name:"-",lectureHours:-1}
+        }
+        if(dot.person==null){
+          dot.person={id:0,name: "-", eyeColor: "", hairColor: "", location:{id:0,x:0,y:0,z:0},
+          weight:1, nationality: ""}
         }
         let t=true
         if(this.nameFilter!=="" && dot.name!==this.nameFilter){
@@ -334,7 +343,6 @@ export default {
         if(this.discipline_lectureHoursFilter!==null && this.discipline_lectureHoursFilter!=="" && dot.discipline.lectureHours!==this.discipline_lectureHoursFilter){
           t=false
         }
-        console.log(t)
         if(this.minimalPointFilter!==null && this.minimalPointFilter!=="" && dot.minimalPoint!==this.minimalPointFilter){
           t=false
         }
@@ -370,10 +378,27 @@ export default {
         if(this.permissionFilter!=="-" && per!==this.permissionFilter){
           t=false
         }
-        console.log(t)
         return t
       });
     },
+    sortedData() {
+      return this.filteredEmployees.slice().sort((a, b) => {
+        if (this.sortKey) {
+          if(this.sortKey==="difficulty"){
+            const modifier = this.sortOrder;
+            if (this.sortedDif(b[this.sortKey],a[this.sortKey])) return -1 * modifier;
+            if (this.sortedDif(a[this.sortKey],b[this.sortKey])) return modifier;
+          } else {
+            const modifier = this.sortOrder;
+            if (a[this.sortKey] < b[this.sortKey]) return -1 * modifier;
+            if (a[this.sortKey] > b[this.sortKey]) return modifier;
+          }
+          return 0;
+        }
+        return 0;
+      });
+    },
+
   },
 }
 </script>

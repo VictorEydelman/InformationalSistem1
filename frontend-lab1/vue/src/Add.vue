@@ -1,6 +1,9 @@
 <template>
   <div>
     <div>
+      <button type="submit" @click="close">Закрыть вкладку</button>
+    </div>
+    <div>
       <div>
         <label>Name</label>
         <input type="text" v-model="name">
@@ -37,6 +40,9 @@
         <h7 v-if="difficultystatus && difficulty==='-'" style="color: red">fsdfs</h7>
       </div>
       <div>
+        <input type="checkbox" v-model="disciplinestatus">
+      </div>
+      <div v-if="disciplinestatus">
         <label>Discipline</label>
         <div>
           <label>Name</label>
@@ -59,6 +65,9 @@
         <h7 v-if="averagePoint<1" style="color: red">fsdfs</h7>
       </div>
       <div>
+        <input type="checkbox" v-model="personstatus">
+      </div>
+      <div v-if="personstatus">
         <label>Person</label>
         <div>
           <label>Name</label>
@@ -119,7 +128,6 @@
       <div>
         <input type="checkbox" v-model="permission">
       </div>
-
       <button type="submit" @click="add">Добавить лабораторную работу</button>
     </div>
   </div>
@@ -140,6 +148,7 @@ export default {
       discipline_name: "",
       discipline_namestatus: false,
       discipline_lectureHours: 1,
+      disciplinestatus: false,
       minimalPoint: 1,
       averagePoint: 1,
       person_name: "",
@@ -154,8 +163,9 @@ export default {
       person_weight: 1,
       person_nationality: "-",
       person_nationalitystatus: false,
+      personstatus:false,
       dots: new Array(0),
-      permission: true
+      permission: true,
     }
   },
   methods: {
@@ -170,22 +180,13 @@ export default {
           }),
           body: JSON.stringify({
             name: this.name,
-            coordinates_x: this.coordinates_x,
-            coordinates_y: this.coordinates_y,
+            coordinates:{x: this.coordinates_x, y: this.coordinates_y},
             description: this.description,
             difficulty: this.difficulty,
-            discipline_name: this.discipline_name,
-            discipline_lectureHours: this.discipline_lectureHours,
+            discipline:this.disciplineadd(),
             minimalPoint: this.minimalPoint,
             averagePoint: this.averagePoint,
-            person_name: this.person_name,
-            person_eyeColor: this.person_eyeColor,
-            person_hairColor: this.person_hairColor,
-            person_location_x: this.person_location_x,
-            person_location_y: this.person_location_y,
-            person_location_z: this.person_location_z,
-            person_weight: this.person_weight,
-            person_nationality: this.person_nationality,
+            person: this.personadd(),
             permission: this.permission
           })
         }).then((response) => {
@@ -218,7 +219,7 @@ export default {
         t=false
         this.difficultystatus=true
       }
-      if(this.discipline_name===""){
+      if(this.discipline_name==="" && this.disciplinestatus){
         t=false
         this.discipline_namestatus=true
       }
@@ -228,27 +229,50 @@ export default {
       if(this.averagePoint<1){
         t=false
       }
-      if(this.person_name===""){
+      if(this.person_name==="" && this.personstatus){
         t=false
         this.person_namestatus=true
       }
-      if(this.person_eyeColor==="-"){
-        t=false
-        this.person_eyeColorstatus=true
-      }
-      if(this.person_hairColor==="-"){
+      if(this.person_hairColor==="-" && this.personstatus){
         t=false
         this.person_hairColorstatus=true
       }
-      if(this.person_weight<1){
+      if(this.person_weight<1 && this.personstatus){
         t=false
       }
-      if(this.person_nationality==="-"){
+      if(this.person_nationality==="-" && this.personstatus){
+        t=false
+        this.person_nationalitystatus=true
+      }
+      if(this.person_location_x==="-" && this.personstatus){
         t=false
         this.person_nationalitystatus=true
       }
       alert(t)
       return t
+    },
+    disciplineadd(){
+      if(!this.disciplinestatus){
+        return null
+      } else {
+        return {name:this.discipline_name,lectureHours:this.discipline_lectureHours}
+      }
+    },
+    personadd(){
+      if(!this.personstatus){
+        return null
+      } else {
+        return {name: this.person_name,
+          eyeColor: this.person_eyeColor,
+          hairColor: this.person_hairColor,
+          location: {x: this.person_location_x,
+            y: this.person_location_y, z: this.person_location_z},
+          weight: this.person_weight,
+          nationality: this.person_nationality}
+      }
+    },
+    close(){
+      this.$router.push({name: 'main'});
     }
   }
 }

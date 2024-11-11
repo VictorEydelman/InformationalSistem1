@@ -44,7 +44,7 @@ public class LabWorkController {
         System.out.println(labWork);
         labWorkService.add(labWork);
         BuilderHistory builderHistory = new BuilderHistory();
-        builderHistory.add(labWork,user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
+        builderHistory.add(labWork,"INSERT",user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -58,12 +58,14 @@ public class LabWorkController {
     @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<String> update(@RequestBody LabWorkDTO labWorkDTO, HttpServletRequest request) {
         User user = userService.getByUsername(jwtService.extractUsername(jwtService.resolveToken(request)));
+        System.out.println(labWorkDTO);
+        System.out.println(user);
         if(Objects.equals(user.getUsername(), labWorkService.findById(labWorkDTO.getId()).getUsername()) || (user.getRole()== Role.ROLE_ADMIN && labWorkDTO.isPermission())) {
             BuilderLabworks builderLabworks = new BuilderLabworks();
             LabWork labWork = builderLabworks.update(labWorkDTO, user,labWorkService, coordinateSevice, disciplineService, personService, locationService);
             labWorkService.update(labWork,user.getUsername());
             BuilderHistory builderHistory = new BuilderHistory();
-            builderHistory.update(labWork,user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
+            builderHistory.add(labWork,"UPDATE",user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Нет доступа к изменению",HttpStatus.BAD_REQUEST);
@@ -81,7 +83,7 @@ public class LabWorkController {
             System.out.println(12345);
             //String username = authentication.getName();
             BuilderHistory builderHistory = new BuilderHistory();
-            builderHistory.add(labWork,user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
+            builderHistory.add(labWork,"INSERT",user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
             //System.out.println(labWork);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
