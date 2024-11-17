@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="btmatthews.jaxb2_commons.jaxb2.commons.lang34" type="repository">
+    <properties maven-id="com.btmatthews.jaxb2_commons:jaxb2-commons-lang3:1.0.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/btmatthews/jaxb2_commons/jaxb2-commons-lang3/1.0.0/jaxb2-commons-lang3-1.0.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
