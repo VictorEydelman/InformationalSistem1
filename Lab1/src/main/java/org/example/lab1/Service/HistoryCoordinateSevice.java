@@ -18,22 +18,7 @@ public class HistoryCoordinateSevice {
     public void add(HistoryCoordinates historyCoordinates){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        //user.setId(1L);
-        //System.out.print(session);
         session.merge(historyCoordinates);
-        tx.commit();
-    }
-    public void update(HistoryCoordinates historyCoordinates){
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        System.out.println(historyCoordinates);
-        session.update(historyCoordinates);
-        tx.commit();
-    }
-    public void delete(HistoryCoordinates historyCoordinates){
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(historyCoordinates);
         tx.commit();
     }
 }

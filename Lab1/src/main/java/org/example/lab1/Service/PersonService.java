@@ -22,15 +22,12 @@ public class PersonService {
     public void add(Person person){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        //user.setId(1L);
-        System.out.print(session);
         session.persist(person);
         tx.commit();
     }
     public void update(Person person){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        System.out.println(person);
         session.update(person);
         tx.commit();
     }
@@ -53,7 +50,6 @@ public class PersonService {
         queue.setParameter("location", location);
         queue.setParameter("weight", weight);
         queue.setParameter("nationality", nationality);
-        System.out.println(queue.list().size());
         if(!queue.list().isEmpty()){
             return queue.list().get(0);
         } else{
@@ -66,7 +62,6 @@ public class PersonService {
         String hql = "FROM Person l WHERE l.id = :id";
         Query<Person> queue=session.createQuery(hql, Person.class);
         queue.setParameter("id", id);
-        System.out.println(queue.list().size());
         if(!queue.list().isEmpty()){
             return queue.list().get(0);
         } else{

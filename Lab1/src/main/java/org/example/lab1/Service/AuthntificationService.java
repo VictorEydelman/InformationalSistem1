@@ -2,7 +2,7 @@ package org.example.lab1.Service;
 
 import lombok.AllArgsConstructor;
 import org.example.lab1.entities.DTO.UserDTO;
-import org.example.lab1.HashUtil;
+import org.example.lab1.entities.Hash.HashUtil;
 import org.example.lab1.entities.enums.Role;
 import org.example.lab1.entities.User;
 import org.springframework.stereotype.Service;

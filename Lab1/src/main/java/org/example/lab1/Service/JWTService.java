@@ -18,8 +18,6 @@ import java.util.function.Function;
 
 @Service
 public class JWTService {
-    /*@Value("${jwt.token.signing}")
-    private String jwtsSigningKey;*/
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -30,8 +28,6 @@ public class JWTService {
     }
 
     private Claims extractAllClaims(String token) {
-        System.out.println(token);
-        //System.out.println(Jwts.parser().build().parseClaimsJws(token));
         return Jwts.parser().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody();
     }
 
@@ -39,17 +35,7 @@ public class JWTService {
         byte[] keyBytes = Decoders.BASE64.decode("zHNpSjDRjIFQIZSUKU6gtmnG6xcMJwuJ5HIrzBOpjU2UrB3");
         return Keys.hmacShaKeyFor(keyBytes);
     }
-    /*public String generateToken(UserDetails userDetails, List<String> roles) {
-        Claims claims = Jwts.claims().setSubject(userDetails.getUsername()).build();
-        claims.put("roles",roles);
-        JwtBuilder m = Jwts.builder().setClaims(claims).setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis()+600000*24))
-                .setE
-        return Jwts.builder().setClaims(claims).setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+600000*24))
-                .compact();
-    }*/
+
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String userName = extractUsername(token);
         return (userName.equals(userDetails.getUsername()) && !isTokenExpired(token));
@@ -67,10 +53,11 @@ public class JWTService {
         }
         return generateToken(claims,userDetails);
     }
+
     public String generateToken(Map<String,Object> claims, UserDetails userDetails) {
         return Jwts.builder().setClaims(claims).setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+600000*24))
+                .setExpiration(new Date(System.currentTimeMillis()+6000000*24))
                 .signWith(getSigningKey(),SignatureAlgorithm.HS256)
                 .compact();
     }

@@ -15,4 +15,12 @@ public enum Difficulty {
             return Difficulty.values()[nextDifficulty];
         }
     }
+    public Difficulty getLastDifficulty() {
+        int lastDifficulty = (this.ordinal() - 1);
+        if(lastDifficulty <= -1){
+            return Difficulty.values()[lastDifficulty+1];
+        } else {
+            return Difficulty.values()[lastDifficulty];
+        }
+    }
 }

@@ -1,8 +1,7 @@
 package org.example.lab1.config;
 
 import lombok.AllArgsConstructor;
-//import org.example.lab1.JWTFilter;
-import org.example.lab1.JWTFilter;
+//import org.example.lab1.config.JWTFilter;
 import org.example.lab1.Service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -18,23 +18,7 @@ public class HistoryPersonService {
     public void add(HistoryPerson historyPerson){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        //user.setId(1L);
-        System.out.print(historyPerson);
         session.persist(historyPerson);
         tx.commit();
     }
-    public void update(HistoryPerson historyPerson){
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        System.out.println(historyPerson);
-        session.update(historyPerson);
-        tx.commit();
-    }
-    public void delete(HistoryPerson historyPerson){
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(historyPerson);
-        tx.commit();
-    }
-
 }

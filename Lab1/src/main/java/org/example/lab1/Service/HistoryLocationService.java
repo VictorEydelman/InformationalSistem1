@@ -20,18 +20,4 @@ public class HistoryLocationService {
         session.merge(historyLocation);
         tx.commit();
     }
-    public void update(HistoryLocation historyLocation){
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        System.out.println(historyLocation);
-        session.update(historyLocation);
-        tx.commit();
-    }
-
-    public void delete(HistoryLocation historyLocation){
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(historyLocation);
-        tx.commit();
-    }
 }

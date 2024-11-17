@@ -2,8 +2,8 @@ package org.example.lab1.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.example.lab1.BuilderHistory;
-import org.example.lab1.ResponceFormate.FilterGroupByIdResponce;
+import org.example.lab1.Service.Builder.BuilderHistory;
+import org.example.lab1.ResponceFormate.filterGroupByIdResponce;
 import org.example.lab1.entities.LabWork;
 import org.example.lab1.entities.enums.Role;
 import org.example.lab1.entities.User;
@@ -54,7 +54,7 @@ public class FilterController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @GetMapping(value = "/groupById", produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<List<FilterGroupByIdResponce>> groupById(HttpServletRequest request) {
+    private ResponseEntity<List<filterGroupByIdResponce>> groupById(HttpServletRequest request) {
         return new ResponseEntity<>(labWorkService.groupById(),HttpStatus.CREATED);
     }
     @GetMapping(value = "/getByDescription/{description}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -64,12 +64,19 @@ public class FilterController {
     @PostMapping(value = "/upTheDifficulty/{id}/{step}", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<String> upTheDifficulty(@PathVariable Long id,@PathVariable int step,HttpServletRequest request) {
         LabWork labWork = labWorkService.findById(id);
-        while (step>0){
-            labWork.setDifficulty(labWork.getDifficulty().getNextDifficulty());
-            step--;
+        if(step>0) {
+            while (step > 0) {
+                labWork.setDifficulty(labWork.getDifficulty().getNextDifficulty());
+                step--;
+            }
+        } else {
+            while (step<0){
+                labWork.setDifficulty(labWork.getDifficulty().getLastDifficulty());
+                step++;
+            }
         }
         User user = userService.getByUsername(jwtService.extractUsername(jwtService.resolveToken(request)));
-        BuilderHistory builderHistory =new BuilderHistory();
+        BuilderHistory builderHistory = new BuilderHistory();
         builderHistory.add(labWork,"UPDATE",user.getUsername(),historyLabWorkService,historyCoordinateSevice,historyDisciplineService,historyLocationService,historyPersonService);
         labWorkService.update(labWork,user.getUsername());
         return new ResponseEntity<>(HttpStatus.OK);
@@ -78,7 +85,7 @@ public class FilterController {
     private ResponseEntity<String> deleteDiscipline(@PathVariable long id, HttpServletRequest request) {
         User user = userService.getByUsername(jwtService.extractUsername(jwtService.resolveToken(request)));
         LabWork labWork = labWorkService.findById(id);
-        if(Objects.equals(user.getUsername(), labWorkService.findById(id).getUsername()) || (user.getRole()== Role.ROLE_ADMIN && labWork.isPermission())) {
+        if(Objects.equals(user.getUsername(), labWorkService.findById(id).getUsername()) || (user.getRole()==Role.ROLE_ADMIN && labWork.isPermission())) {
             labWork.setDiscipline(null);
             labWorkService.update(labWork,user.getUsername());
             BuilderHistory builderHistory =new BuilderHistory();

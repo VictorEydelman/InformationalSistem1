@@ -22,8 +22,6 @@ public class ToRoleAdminService {
 
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        //user.setId(1L);
-        System.out.print(session);
         session.persist(toRoleAdmin);
         tx.commit();
     }
@@ -38,7 +36,6 @@ public class ToRoleAdminService {
         String hql = "FROM ToRoleAdmin u WHERE u.username = :username";
         Query<ToRoleAdmin> queue=session.createQuery(hql, ToRoleAdmin.class);
         var q =queue.setParameter("username", username);
-        System.out.println(q.list().size());
         if(!q.list().isEmpty()){
             return q.list().get(0);
         } else{

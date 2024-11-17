@@ -19,19 +19,13 @@ public class UserService {
     public void save(User user) {
         try(Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
-            //user.setId(1L);
-            System.out.println(user);
-            //System.out.print(session);
-
             session.persist(user);
-            System.out.println(user);
             tx.commit();
         }
     }
     public User getByUsernameAndPassword(String username, String password) {
         Session session = sessionFactory.openSession();
         Query<User> queue = session.createQuery("FROM User WHERE username = :username and password = :password",User.class);
-        System.out.println(queue);
         queue.setParameter("username", username);
         queue.setParameter("password", password);
         try {
@@ -42,11 +36,8 @@ public class UserService {
     }
     public User getByUsername(String username) {
         Session session = sessionFactory.openSession();
-        System.out.println(username);
         Query<User> queue = session.createQuery("FROM User WHERE username = :username",User.class);
-
         queue.setParameter("username", username);
-        System.out.println(queue);
         return queue.uniqueResult();
     }
     public UserDetailsService userDetailsService() {

@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class FilterGroupByIdResponce {
+public class filterGroupByIdResponce {
     Long id;
     Long count;
 }

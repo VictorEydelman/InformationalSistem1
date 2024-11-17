@@ -25,7 +25,6 @@ public class DisciplineService {
     public void update(Discipline discipline){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        System.out.println(discipline);
         session.update(discipline);
         tx.commit();
     }
@@ -43,7 +42,6 @@ public class DisciplineService {
         Query<Discipline> queue=session.createQuery(hql, Discipline.class);
         queue.setParameter("name", name);
         queue.setParameter("lectureHours", LectureHours);
-        System.out.println(queue.list().size());
         if(!queue.list().isEmpty()){
             return queue.list().get(0);
         } else{
@@ -56,7 +54,6 @@ public class DisciplineService {
         String hql = "FROM Discipline l WHERE l.id = :id";
         Query<Discipline> queue=session.createQuery(hql, Discipline.class);
         queue.setParameter("id", id);
-        System.out.println(queue.list().size());
         if(!queue.list().isEmpty()){
             return queue.list().get(0);
         } else{

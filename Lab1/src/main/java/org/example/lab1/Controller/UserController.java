@@ -2,7 +2,7 @@ package org.example.lab1.Controller;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.example.lab1.HashUtil;
+import org.example.lab1.entities.Hash.HashUtil;
 import org.example.lab1.entities.DTO.UserDTO;
 import org.example.lab1.entities.User;
 import org.example.lab1.Service.AuthntificationService;
@@ -28,7 +28,6 @@ public class UserController {
         User user = userService.getByUsername(userDTO.getUsername());
         if (user == null) {
             List<String> n=authntificationService.signUp(userDTO);
-            System.out.println(n);
             return ResponseEntity.ok(n);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -38,11 +37,8 @@ public class UserController {
     private ResponseEntity<List<String>> avt(@Valid @RequestBody UserDTO userDTO) throws NoSuchAlgorithmException {
         String hashedPass= HashUtil.digectPassword(userDTO.getPassword());
         User user = userService.getByUsernameAndPassword(userDTO.getUsername(),hashedPass);
-        System.out.println(user);
-        System.out.println(1);
         if(user != null){
             List<String> n = authntificationService.signIn(user);
-            System.out.println(n);
             return ResponseEntity.ok(n);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

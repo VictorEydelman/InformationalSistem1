@@ -1,7 +1,7 @@
 package org.example.lab1.Service;
 
 import lombok.AllArgsConstructor;
-import org.example.lab1.ResponceFormate.FilterGroupByIdResponce;
+import org.example.lab1.ResponceFormate.filterGroupByIdResponce;
 import org.example.lab1.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,10 +31,7 @@ public class LabWorkService {
 
     public List<LabWork> getAll(){
         Session session = sessionFactory.openSession();
-        //Query<LabWorkResponce> queue = session.createQuery(
-            //    "FROM LabWork l JOIN " +
-          //      "l.coordinates c JOIN l.discipline JOIN l.person p JOIN p.location", LabWorkResponce.class);
-        Query<LabWork> query =session.createQuery("FROM LabWork l",LabWork.class);
+        Query<LabWork> query = session.createQuery("FROM LabWork l",LabWork.class);
         return query.list();
     }
 
@@ -45,21 +42,11 @@ public class LabWorkService {
         tx.commit();
     }
     public void delete(Long id, String username, CoordinateSevice coordinateSevice, DisciplineService disciplineService, PersonService personService, LocationService locationService){
-
-        //user.setId(1L);
-        //System.out.println(labWork);
-        //System.out.print(session);
-        System.out.println(id);
         Session session = sessionFactory.openSession();
-
         Transaction tx = session.beginTransaction();
         LabWork labWork = session.find(LabWork.class, id);
         session.delete(labWork);
-
-        System.out.println(1234);
-        //System.out.println(labWork);
         tx.commit();
-        System.out.println(countByPerson(labWork.getCoordinates().getId()));
         if(countByPerson(labWork.getCoordinates().getId())==1) {
             coordinateSevice.delete(labWork.getCoordinates());
         }
@@ -76,12 +63,8 @@ public class LabWorkService {
 
     public LabWork findById(Long id){
         Session session = sessionFactory.openSession();
-
         Transaction tx = session.beginTransaction();
         LabWork labWork = session.find(LabWork.class, id);
-
-        System.out.println(1234);
-        //System.out.println(labWork);
         tx.commit();
         return labWork;
     }
@@ -91,29 +74,24 @@ public class LabWorkService {
         String hql = "FROM LabWork l WHERE l.minimalPoint = :minimalPoint";
         Query<LabWork> queue=session.createQuery(hql, LabWork.class);
         var q =queue.setParameter("minimalPoint", minimalPoint);
-        System.out.println(q.list().size());
         if(!q.list().isEmpty()){
             return q.list().get(0);
         } else{
             return null;
         }
     }
-    public List<FilterGroupByIdResponce> groupById(){
+    public List<filterGroupByIdResponce> groupById(){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-
         String hql = "select id, count(*) FROM LabWork GROUP BY id ORDER BY id";
-        Query<Object[]> queue=session.createQuery(hql, Object[].class);
         Query<Object[]> query = session.createQuery(hql, Object[].class);
-        List<FilterGroupByIdResponce> resultList = new ArrayList<>();
+        List<filterGroupByIdResponce> resultList = new ArrayList<>();
         List<Object[]> results = query.list();
-
         for (Object[] row : results) {
             Long id = (Long) row[0];
             Long count = (Long) row[1];
-            resultList.add(new FilterGroupByIdResponce(id, count));
+            resultList.add(new filterGroupByIdResponce(id, count));
         }
-        System.out.println();
         tx.commit();
         return resultList;
     }

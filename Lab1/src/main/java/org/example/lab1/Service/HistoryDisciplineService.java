@@ -21,18 +21,4 @@ public class HistoryDisciplineService {
         session.merge(historyDiscipline);
         tx.commit();
     }
-    public void update(HistoryDiscipline historyDiscipline){
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        System.out.println(historyDiscipline);
-        session.update(historyDiscipline);
-        tx.commit();
-    }
-
-    public void delete(HistoryDiscipline historyDiscipline){
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(historyDiscipline);
-        tx.commit();
-    }
 }

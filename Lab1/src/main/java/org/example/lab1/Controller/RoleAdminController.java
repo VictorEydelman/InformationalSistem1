@@ -25,27 +25,21 @@ public class RoleAdminController {
 
     @PostMapping(value = "/addAdmin", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<String> addAdmin(@RequestBody ToRoleAdminDTO toRoleAdminDTO, HttpServletRequest request) {
-        System.out.println(toRoleAdminDTO);
         if(userService.getByUsername(toRoleAdminDTO.getUsernameAdmin()).getRole()==Role.ROLE_ADMIN && toRoleAdminService.findByUsername(toRoleAdminDTO.getUsername())!=null) {
-            System.out.println(toRoleAdminDTO.getUsername());
             User user = userService.getByUsername(toRoleAdminDTO.getUsername());
-            System.out.println(user);
-            System.out.println(987777776);
             User user1 = User.builder().username(user.getUsername())
                     .password(user.getPassword()).id(user.getId()).role(Role.ROLE_ADMIN).build();
             userService.update(user1);
             toRoleAdminService.delete(toRoleAdminService.findByUsername(toRoleAdminDTO.getUsername()));
-            return new ResponseEntity<>("s", HttpStatus.OK);
+            return new ResponseEntity<>( HttpStatus.OK);
         } else {
-            System.out.println(1234);
-            return new ResponseEntity<>("s", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Изменение не админом невозможно", HttpStatus.FORBIDDEN);
         }
     }
 
     @PostMapping(value = "/add/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<String> add(@PathVariable String username, HttpServletRequest request) {
         if(toRoleAdminService.findByUsername(username)==null) {
-
             toRoleAdminService.add(ToRoleAdmin.builder().username(username).build());
         }
         return new ResponseEntity<>("s",HttpStatus.OK);
