@@ -5,8 +5,8 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://pg:5432/studs</property>
-        <property name="hibernate.connection.username">s291485</property>
-        <property name="hibernate.connection.password">qz6XMfGNKAgNOWkq</property>
+        <property name="hibernate.connection.username">*******</property>
+        <property name="hibernate.connection.password">*********</property>
 
         <mapping class="org.example.lab1.entities.User"/>
         <mapping class="org.example.lab1.entities.LabWork"/>
