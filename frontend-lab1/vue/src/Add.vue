@@ -1,31 +1,43 @@
 <template>
   <div>
-    <div>
+    <div style="margin-left: 80%; margin-top: 5%">
       <button type="submit" @click="close">Закрыть вкладку</button>
     </div>
+    <table style="padding-left: 30%; margin-top: 5%">
     <div>
       <div>
         <label>Name</label>
         <input type="text" v-model="name">
-        <h7 v-if="namestatus && name===''" style="color: red">fsdfs</h7>
+        <h7 v-if="namestatus && name===''" style="color: red">Введены недопустимые данные</h7>
       </div>
       <div>
         <label>Coordinates</label>
-        <div>
-          <label>X</label>
-          <input type="number" v-model="coordinates_x">
-          <h7 v-if="coordinates_x<-137" style="color: red">dsf</h7>
+        <p>Выбрать координату из существующих <input type="checkbox" v-model="coordinateshave"></p>
+        <div v-if="coordinateshave">
+          <select v-model="coordinates" @change="coordinates_x=coordinates.split(' ')[3];
+            coordinates_y=coordinates.split(' ')[5]">
+            <option v-for="dot in dotsCreate" :key="dot">
+              ID: {{dot.id}} X: {{dot.coordinates.x}}  Y: {{dot.coordinates.y}}
+            </option>
+          </select>
         </div>
-        <div>
-          <label>Y</label>
-          <input type="number" v-model="coordinates_y">
-          <h7 v-if="coordinates_y>65" style="color: red">dsf</h7>
+        <div v-else>
+          <div class="tab">
+            <label>X</label>
+            <input type="number" v-model="coordinates_x">
+            <h7 v-if="coordinates_x<-137" style="color: red">dsf</h7>
+          </div>
+          <div class="tab">
+            <label>Y</label>
+            <input type="number" v-model="coordinates_y">
+            <h7 v-if="coordinates_y>65" style="color: red">dsf</h7>
+          </div>
         </div>
       </div>
       <div>
         <label>Description</label>
         <input type="text" v-model="description">
-        <h7 v-if="descriptionstatus && description===''" style="color: red">fsdfs</h7>
+        <h7 v-if="descriptionstatus && description===''" style="color: red">Введены недопустимые данные</h7>
       </div>
       <div>
         <label>Difficulty</label>
@@ -37,92 +49,125 @@
           <option>VERY_HARD</option>
           <option>IMPOSSIBLE</option>
         </select>
-        <h7 v-if="difficultystatus && difficulty==='-'" style="color: red">fsdfs</h7>
+        <h7 v-if="difficultystatus && difficulty==='-'" style="color: red">Введены недопустимые данные</h7>
       </div>
-      <div>
-        <input type="checkbox" v-model="disciplinestatus">
-      </div>
+      <label>Discipline</label>
+      <p>Дисциплина не равна NULL<input type="checkbox" v-model="disciplinestatus"></p>
       <div v-if="disciplinestatus">
-        <label>Discipline</label>
-        <div>
-          <label>Name</label>
-          <input type="text" v-model="discipline_name">
-          <h7 v-if="discipline_namestatus && discipline_name===''" style="color: red">fsdfs</h7>
+        <p>Выбрать дисциплину из существующих <input type="checkbox" v-model="disciplinehave"></p>
+        <div v-if="disciplinehave">
+          <select v-model="discipline" @change="discipline_name=discipline.split(' ')[3];
+            discipline_lectureHours=discipline.split(' ')[5]">
+            <option v-if="dot.discipline.name!==''" v-for="dot in dotsCreate" :key="dot">
+              ID: {{dot.id}} Name: {{dot.discipline.name}}  LectureHours: {{dot.discipline.lectureHours}}
+            </option>
+          </select>
         </div>
-        <div>
-          <label>Lecture Hours</label>
-          <input type="number" v-model="discipline_lectureHours">
+        <div v-else>
+          <div class="tab">
+            <label>Name</label>
+            <input type="text" v-model="discipline_name">
+            <h7 v-if="discipline_namestatus && discipline_name===''" style="color: red">Введены недопустимые данные</h7>
+          </div>
+          <div class="tab">
+            <label>Lecture Hours</label>
+            <input type="number" v-model="discipline_lectureHours">
+          </div>
         </div>
       </div>
       <div>
         <label>Minimal Point</label>
         <input type="number" v-model="minimalPoint">
-        <h7 v-if="minimalPoint<1" style="color: red">fsdfs</h7>
+        <h7 v-if="minimalPoint<1" style="color: red">Введены недопустимые данные</h7>
       </div>
       <div>
         <label>Average Point</label>
         <input type="number" v-model="averagePoint">
-        <h7 v-if="averagePoint<1" style="color: red">fsdfs</h7>
+        <h7 v-if="averagePoint<1" style="color: red">Введены недопустимые данные</h7>
       </div>
-      <div>
-        <input type="checkbox" v-model="personstatus">
-      </div>
+      <label>Person</label>
+      <p>Person не равна NULL<input type="checkbox" v-model="personstatus"></p>
       <div v-if="personstatus">
-        <label>Person</label>
-        <div>
-          <label>Name</label>
-          <input type="text" v-model="person_name">
-          <h7 v-if="person_namestatus && person_name===''" style="color: red">fsdfs</h7>
-        </div>
-        <div>
-          <label>Eye color</label>
-          <select v-model="person_eyeColor">
-            <option value="-">-</option>
-            <option>GREEN</option>
-            <option>RED</option>
-            <option>BROWN</option>
+        <p>Выбрать person из существующих <input type="checkbox" v-model="personhave"></p>
+        <div v-if="personhave">
+          <select v-model="person" @change="person_name=person.split(' ')[3];
+            person_eyeColor=person.split(' ')[5]; person_hairColor=person.split(' ')[7]; person_location_x=person.split(' ')[9];
+            person_location_y=person.split(' ')[11]; person_location_z=person.split(' ')[13]; person_weight=person.split(' ')[15];
+            person_nationality=person.split(' ')[17]">
+            <option v-if="dot.person.name!==''" v-for="dot in dotsCreate" :key="dot">
+              ID: {{dot.id}} Name: {{dot.person.name}} LectureHours: {{dot.person.eyeColor}} HairColor: {{dot.person.hairColor}}
+              Location_X: {{dot.person.location.x}} Location_Y: {{dot.person.location.y}} Location_Z: {{dot.person.location.z}}
+              Weight: {{dot.person.weight}} Nationality: {{dot.person.nationality}}
+            </option>
           </select>
-          <h7 v-if="person_eyeColorstatus && person_eyeColor==='-'" style="color: red">fsdfs</h7>
         </div>
-        <div>
-          <label>Hair Color</label>
-          <select v-model="person_hairColor">
-            <option value="-">-</option>
-            <option>GREEN</option>
-            <option>RED</option>
-            <option>BROWN</option>
-          </select>
-          <h7 v-if="person_hairColorstatus && person_hairColor==='-'" style="color: red">fsdfs</h7>
-        </div>
-        <div>
-          <label>Location</label>
-          <div>
-            <label>X</label>
-            <input type="number" v-model="person_location_x">
+        <div v-else>
+          <div class="tab">
+            <label>Name</label>
+            <input type="text" v-model="person_name">
+            <h7 v-if="person_namestatus && person_name===''" style="color: red">Введены недопустимые данные</h7>
           </div>
-          <div>
-            <label>Y</label>
-            <input type="number" v-model="person_location_y">
+          <div class="tab">
+            <label>Eye color</label>
+            <select v-model="person_eyeColor">
+              <option value="-">-</option>
+              <option>GREEN</option>
+              <option>RED</option>
+              <option>BROWN</option>
+            </select>
+            <h7 v-if="person_eyeColorstatus && person_eyeColor==='-'" style="color: red">Введены недопустимые данные</h7>
           </div>
-          <div>
-            <label>Z</label>
-            <input type="number" v-model="person_location_z">
+          <div class="tab">
+            <label>Hair Color</label>
+            <select v-model="person_hairColor">
+              <option value="-">-</option>
+              <option>GREEN</option>
+              <option>RED</option>
+              <option>BROWN</option>
+            </select>
+            <h7 v-if="person_hairColorstatus && person_hairColor==='-'" style="color: red">Введены недопустимые данные</h7>
           </div>
-        </div>
-        <div>
-          <label>Weight</label>
-          <input type="number" v-model="person_weight">
-          <h7 v-if="person_weight<1" style="color: red">fsdfs</h7>
-        </div>
-        <div>
-          <label>Nationality</label>
-          <select v-model="person_nationality">
-            <option value="-">-</option>
-            <option>CHINA</option>
-            <option>VATICAN</option>
-            <option>SOUTH_KOREA</option>
-          </select>
-          <h7 v-if="person_nationalitystatus && person_nationality==='-'" style="color: red">fsdfs</h7>
+          <div class="tab">
+            <label>Location</label>
+            <p>Выбрать локация из существующих <input type="checkbox" v-model="locationhave"></p>
+            <div v-if="locationhave">
+              <select v-model="locat" @change="person_location_x=locat.split(' ')[3];
+                person_location_y=locat.split(' ')[5]; person_location_z=locat.split(' ')[7]">
+                <option v-for="dot in dotsCreate" :key="dot">
+                  ID: {{dot.id}} X: {{dot.person.location.x}} Y: {{dot.person.location.y}} Z: {{dot.person.location.z}}
+                </option>
+              </select>
+            </div>
+            <div v-else>
+              <div class="tab">
+                <label>X</label>
+                <input type="number" v-model="person_location_x">
+              </div>
+              <div class="tab">
+                <label>Y</label>
+                <input type="number" v-model="person_location_y">
+              </div>
+              <div class="tab">
+                <label>Z</label>
+                <input type="number" v-model="person_location_z">
+              </div>
+            </div>
+          </div>
+          <div class="tab">
+            <label>Weight</label>
+            <input type="number" v-model="person_weight">
+            <h7 v-if="person_weight<1" style="color: red">Введены недопустимые данные</h7>
+          </div>
+          <div class="tab">
+            <label>Nationality</label>
+            <select v-model="person_nationality">
+              <option value="-">-</option>
+              <option>CHINA</option>
+              <option>VATICAN</option>
+              <option>SOUTH_KOREA</option>
+            </select>
+            <h7 v-if="person_nationalitystatus && person_nationality==='-'" style="color: red">Введены недопустимые данные</h7>
+          </div>
         </div>
       </div>
       <div>
@@ -130,6 +175,7 @@
       </div>
       <button type="submit" @click="add">Добавить лабораторную работу</button>
     </div>
+    </table>
   </div>
 </template>
 <script>
@@ -166,12 +212,20 @@ export default {
       personstatus:false,
       dots: new Array(0),
       permission: true,
+      dotsCreate:new Array(0),
+      coordinates:"",
+      coordinateshave:false,
+      discipline:"",
+      disciplinehave:false,
+      person:"",
+      personhave:false,
+      locat:"",
+      locationhave:false
     }
   },
   methods: {
     add() {
       if (this.validat()) {
-        alert(localStorage.getItem("jwt"))
         fetch("http://localhost:1298/api/LabWork/add", {
           method: "POST",
           headers: new Headers({
@@ -199,7 +253,6 @@ export default {
       }
     },
     validat(){
-      alert(123131)
       var t=true
       if(this.name ===""){
         t=false
@@ -248,7 +301,6 @@ export default {
         t=false
         this.person_nationalitystatus=true
       }
-      alert(t)
       return t
     },
     disciplineadd(){
@@ -262,21 +314,86 @@ export default {
       if(!this.personstatus){
         return null
       } else {
-        return {name: this.person_name,
-          eyeColor: this.person_eyeColor,
-          hairColor: this.person_hairColor,
-          location: {x: this.person_location_x,
-            y: this.person_location_y, z: this.person_location_z},
-          weight: this.person_weight,
-          nationality: this.person_nationality}
+        if(this.person_eyeColor==="-"){
+          return {name: this.person_name,
+            eyeColor: null,
+            hairColor: this.person_hairColor,
+            location: {x: this.person_location_x,
+              y: this.person_location_y, z: this.person_location_z},
+            weight: this.person_weight,
+            nationality: this.person_nationality}
+        } else {
+          return {
+            name: this.person_name,
+            eyeColor: this.person_eyeColor,
+            hairColor: this.person_hairColor,
+            location: {
+              x: this.person_location_x,
+              y: this.person_location_y, z: this.person_location_z
+            },
+            weight: this.person_weight,
+            nationality: this.person_nationality
+          }
+        }
       }
     },
     close(){
       this.$router.push({name: 'main'});
     }
+  },
+  created(){
+    this.dotsCreate=Object.values(JSON.parse(localStorage.getItem("dots")))
   }
 }
 </script>
 <style scoped>
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+span {
+  font-size: 12px;
+}
+
+span[style*="color: red"] {
+  color: red;
+}
+.tab{
+  padding-left: 10%;
+}
 </style>

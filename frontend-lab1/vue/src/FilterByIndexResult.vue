@@ -28,6 +28,11 @@ export default {
   },
   created() {
     this.filter()
+  },
+  mounter:function () {
+    window.setInterval(() => {
+      this.filter()
+    }, 3000)
   }
 }
 </script>
@@ -35,7 +40,7 @@ export default {
 <template>
   <div>
     <div>
-      <button type="submit" @click="close">Закрыть вкладку</button>
+      <button style="margin-left: 80%" type="submit" @click="close">Закрыть вкладку</button>
     </div>
     <table>
       <thead>
@@ -54,4 +59,51 @@ export default {
 
 <style scoped>
 
+div {
+  margin: 20px;
+}
+
+button[type="submit"] {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
 </style>
