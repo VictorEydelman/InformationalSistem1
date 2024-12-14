@@ -9,7 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="169c4230-144d-4d1d-8ee8-1dda6ca05874" name="Changes" comment="finish" />
+    <list default="true" id="169c4230-144d-4d1d-8ee8-1dda6ca05874" name="Changes" comment="finish">
+      <change afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/History.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/t.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/Add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/Add.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +36,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/io/minio/minio/8.5.14/minio-8.5.14.jar!/io/minio/MinioClient.class" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -43,41 +55,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Maven.Lab1 [clean,install].executor": "Run",
-    "Maven.Lab1 [clean,package].executor": "Run",
-    "Maven.Lab1 [package].executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.Lab1Application.executor": "Run",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/veyde/OneDrive/Документы/Работы ИТМО/ИС/Lab1/src/main/java/org/example",
-    "last_opened_file_path": "C:/Users/veyde/OneDrive - ITMO UNIVERSITY/Работы ИТМО/ИС/InformationalSistem1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15544042",
-    "project.structure.side.proportion": "0.3773148",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Maven.Lab1 [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Lab1 [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Lab1 [package].executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Lab1Application.executor&quot;: &quot;Run&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/veyde/OneDrive/Документы/Работы ИТМО/ИС/Lab1/src/main/java/org/example&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/veyde/Downloads/jmeter-intellij-1.6.3.zip&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15544042&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3773148&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\veyde\OneDrive - ITMO UNIVERSITY\Работы ИТМО\ИС\InformationalSistem1\Lab1\src\main\java\org\example\lab1" />
@@ -212,6 +226,17 @@
       <workItem from="1731764505271" duration="1691000" />
       <workItem from="1731848353977" duration="269000" />
       <workItem from="1731862009589" duration="1447000" />
+      <workItem from="1731926656022" duration="501000" />
+      <workItem from="1733833516369" duration="4732000" />
+      <workItem from="1733858882717" duration="9676000" />
+      <workItem from="1733906965856" duration="9544000" />
+      <workItem from="1733920559834" duration="498000" />
+      <workItem from="1733921100278" duration="8979000" />
+      <workItem from="1733989710748" duration="593000" />
+      <workItem from="1734067374740" duration="595000" />
+      <workItem from="1734084793591" duration="16858000" />
+      <workItem from="1734107976921" duration="15619000" />
+      <workItem from="1734157199836" duration="17909000" />
     </task>
     <task id="LOCAL-00001" summary="finish">
       <option name="closed" value="true" />
@@ -263,5 +288,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

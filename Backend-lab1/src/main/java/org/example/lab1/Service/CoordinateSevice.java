@@ -1,7 +1,9 @@
 package org.example.lab1.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.lab1.entities.Coordinates;
+import org.example.lab1.entities.Location;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,6 +18,7 @@ public class CoordinateSevice {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
     public void add(Coordinates coordinates){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -57,6 +60,27 @@ public class CoordinateSevice {
             return queue.list().get(0);
         } else{
             return null;
+        }
+    }
+    public void saves(Coordinates[] coordinates) {
+        Transaction transaction = null;
+
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+
+            for (Coordinates coordinate: coordinates) {
+                session.persist(coordinate);
+            }
+
+            transaction.commit();
+            System.out.println("Items saved successfully!");
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                System.out.println("Transaction rolled back.");
+            }
+            e.printStackTrace();
         }
     }
 }

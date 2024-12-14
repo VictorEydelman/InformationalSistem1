@@ -1,5 +1,6 @@
 package org.example.lab1.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.lab1.entities.Location;
 import org.hibernate.Session;
@@ -16,6 +17,7 @@ public class LocationService {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
     public void add(Location location){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -59,6 +61,27 @@ public class LocationService {
             return queue.list().get(0);
         } else{
             return null;
+        }
+    }
+    public void saves(Location[] locations) {
+        Transaction transaction = null;
+
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+
+            for (Location location:locations) {
+                session.persist(location);
+            }
+
+            transaction.commit();
+            System.out.println("Items saved successfully!");
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                System.out.println("Transaction rolled back.");
+            }
+            e.printStackTrace();
         }
     }
 }

@@ -28,6 +28,7 @@ public class UserController {
         User user = userService.getByUsername(userDTO.getUsername());
         if (user == null) {
             List<String> n=authntificationService.signUp(userDTO);
+            System.out.println(n);
             return ResponseEntity.ok(n);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -42,5 +43,9 @@ public class UserController {
             return ResponseEntity.ok(n);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @GetMapping(value = "/get",produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<List<String>> get() throws NoSuchAlgorithmException {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package org.example.lab1.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.lab1.ResponceFormate.filterGroupByIdResponce;
 import org.example.lab1.entities.*;
@@ -9,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class LabWorkService {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
     public void add(LabWork labWork){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -129,5 +132,66 @@ public class LabWorkService {
                 "FROM LabWork l where l.person.location.id = :id", LabWork.class);
         queue.setParameter("id",id);
         return queue.list().size();
+    }
+    public void saves(LabWork[] labWorks) {
+        Transaction transaction = null;
+        System.out.println(labWorks.length);
+        for(LabWork labWork:labWorks){
+            System.out.println(labWork);
+        }
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+
+            for (LabWork labWork:labWorks) {
+                session.persist(labWork);
+            }
+
+            transaction.commit();
+            System.out.println("Items saved successfully!");
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                System.out.println("Transaction rolled back.");
+            }
+            e.printStackTrace();
+        }
+    }
+    @Transactional
+    public String saveAll(Coordinates[] coordinates, Location[] locations,
+                          Person[] persons,
+                          Discipline[] disciplines, LabWork[] labWorks,
+                          CoordinateSevice coordinateSevice, DisciplineService disciplineService,
+                          LocationService locationService, PersonService personService,
+                          MultipartFile file, User user,FileService fileService) {
+        try {
+            fileService.uploadUserFile(file,user);
+
+            for (Coordinates entity : coordinates) {
+                coordinateSevice.add(entity);
+            }
+
+            for (Discipline entity : disciplines) {
+                disciplineService.add(entity);
+            }
+
+            for (Location location:locations) {
+                locationService.add(location);
+            }
+
+            for (Person person:persons) {
+                personService.add(person);
+            }
+
+            for (LabWork labWork:labWorks) {
+                add(labWork);
+            }
+            return "успешно";
+        } catch (Exception e) {
+            // Логирование ошибки или обработка исключения
+            //throw new RuntimeException("Ошибка при сохранении данных", e);
+
+            return "не успешно";
+        }
     }
 }

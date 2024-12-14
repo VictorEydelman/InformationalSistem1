@@ -6,12 +6,14 @@ import Form from "./AdminForm.vue"
 import Add from "./Add.vue"
 import Update from "./Update.vue"
 import FilterByIndex from "./FilterByIndexResult.vue"
+import History from "./History.vue"
 Vue.component("app-first",First)
 Vue.component("app-main",Main)
 Vue.component("app-form",Form)
 Vue.component("app-add",Add)
 Vue.component("app-update",Update)
 Vue.component("app-filterbyindexresult",FilterByIndex)
+Vue.component("app-history",History)
 Vue.use(VueRouter)
 const routes = [
   {path: '/', name: "/", component: First},
@@ -36,6 +38,10 @@ const routes = [
       if (localStorage.getItem("jwt")!=="") next();
       else next ({name: "/"})
     }},
+  {path: '/main/history',name: "history", component: History,beforeEnter:(to,from,next)=>{
+      if (localStorage.getItem("jwt")!=="") next();
+      else next ({name: "/"})
+    }}
 ]
 const router = new VueRouter({
   routes

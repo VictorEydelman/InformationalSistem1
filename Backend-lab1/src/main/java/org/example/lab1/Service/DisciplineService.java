@@ -1,7 +1,9 @@
 package org.example.lab1.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.lab1.entities.Discipline;
+import org.example.lab1.entities.Location;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,6 +18,7 @@ public class DisciplineService {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
     public void add(Discipline discipline){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -58,6 +61,27 @@ public class DisciplineService {
             return queue.list().get(0);
         } else{
             return null;
+        }
+    }
+    public void saves(Discipline[] disciplines) {
+        Transaction transaction = null;
+
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+
+            for (Discipline discipline:disciplines) {
+                session.persist(discipline);
+            }
+
+            transaction.commit();
+            System.out.println("Items saved successfully!");
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                System.out.println("Transaction rolled back.");
+            }
+            e.printStackTrace();
         }
     }
 }

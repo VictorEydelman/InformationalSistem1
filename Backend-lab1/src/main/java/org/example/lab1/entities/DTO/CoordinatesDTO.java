@@ -10,6 +10,7 @@ import lombok.*;
 
 public class CoordinatesDTO {
     int id;
+    @NotNull
     @Min(-137)
     float x; //Значение поля должно быть больше -137
     @NotNull

@@ -1,5 +1,6 @@
 package org.example.lab1.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.lab1.entities.enums.Color;
 import org.example.lab1.entities.enums.Country;
@@ -19,6 +20,7 @@ public class PersonService {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
     public void add(Person person){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -66,6 +68,27 @@ public class PersonService {
             return queue.list().get(0);
         } else{
             return null;
+        }
+    }
+    public void saves(Person[] persons) {
+        Transaction transaction = null;
+
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+
+            for (Person person:persons) {
+                session.persist(person);
+            }
+
+            transaction.commit();
+            System.out.println("Items saved successfully!");
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                System.out.println("Transaction rolled back.");
+            }
+            e.printStackTrace();
         }
     }
 }

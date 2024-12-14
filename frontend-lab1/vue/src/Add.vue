@@ -3,6 +3,11 @@
     <div style="margin-left: 80%; margin-top: 5%">
       <button type="submit" @click="close">Закрыть вкладку</button>
     </div>
+    <div>
+      <input type="file" ref="file" v-on:change="fileUpload">
+      <button type="submit" v-on:click="download">Загрузить</button>
+      <button style="margin-left: 15%" type="submit" @click="history">История</button>
+    </div>
     <table style="padding-left: 30%; margin-top: 5%">
     <div>
       <div>
@@ -220,7 +225,29 @@ export default {
       person:"",
       personhave:false,
       locat:"",
-      locationhave:false
+      locationhave:false,
+      file:'',
+      fileContent:'',
+      filename: new Array(0),
+      filecoordinates_x: new Array(0),
+      filecoordinates_y: new Array(0),
+      filedescription: new Array(0),
+      filedifficulty: new Array(0),
+      filediscipline_name: new Array(0),
+      filediscipline_lectureHours: new Array(0),
+      fileminimalPoint: new Array(0),
+      fileaveragePoint: new Array(0),
+      fileperson_name: new Array(0),
+      fileperson_eyeColor: new Array(0),
+      fileperson_hairColor: new Array(0),
+      fileperson_location_x: new Array(0),
+      fileperson_location_y: new Array(0),
+      fileperson_location_z: new Array(0),
+      fileperson_weight: new Array(0),
+      fileperson_nationality: new Array(0),
+      filepermission: new Array(0),
+      parsedDatas:new Array(0),
+      f:new Array(0)
     }
   },
   methods: {
@@ -339,6 +366,29 @@ export default {
     },
     close(){
       this.$router.push({name: 'main'});
+    },
+    history(){
+      this.$router.push({name: 'history'});
+    },
+    fileUpload(){
+      this.file=this.$refs.file.files[0]
+    },
+    download() {
+      const formData = new FormData();
+      formData.append('file', this.file);
+      fetch("http://localhost:1298/api/LabWork/addfile", {
+        method: "POST",
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+        }),
+        body: formData
+      }).then((response) => {
+        if (response.ok) {
+          window.close()
+        } else {
+          alert("Неверно введённые данные")
+        }
+      })
     }
   },
   created(){
