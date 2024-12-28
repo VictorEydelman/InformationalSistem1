@@ -1,10 +1,10 @@
-package org.example.lab1.Service;
+package org.IS.lab1.Service;
 
 import lombok.AllArgsConstructor;
-import org.example.lab1.entities.DTO.UserDTO;
-import org.example.lab1.entities.Hash.HashUtil;
-import org.example.lab1.entities.enums.Role;
-import org.example.lab1.entities.User;
+import org.IS.lab1.entities.Hash.HashUtil;
+import org.IS.lab1.entities.User;
+import org.IS.lab1.entities.enums.Role;
+import org.IS.lab1.entities.DTO.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
@@ -18,7 +18,7 @@ public class AuthntificationService {
     private final JWTService jwtService;
 
     public List<String> signUp(UserDTO userDTO) throws NoSuchAlgorithmException {
-        String hashedPass=HashUtil.digectPassword(userDTO.getPassword());
+        String hashedPass= HashUtil.digectPassword(userDTO.getPassword());
         Role role=Role.ROLE_USER;
         if(userService.sizeUsers()==0){
             role = Role.ROLE_ADMIN;

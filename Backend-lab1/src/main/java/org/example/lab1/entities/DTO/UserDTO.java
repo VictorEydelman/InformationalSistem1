@@ -1,8 +1,8 @@
-package org.example.lab1.entities.DTO;
+package org.IS.lab1.entities.DTO;
 
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.example.lab1.entities.enums.Role;
+import org.IS.lab1.entities.enums.Role;
 
 @Data
 public class UserDTO {

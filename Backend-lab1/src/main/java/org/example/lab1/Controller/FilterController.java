@@ -1,12 +1,13 @@
-package org.example.lab1.Controller;
+package org.IS.lab1.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.example.lab1.Service.Builder.BuilderHistory;
-import org.example.lab1.ResponceFormate.filterGroupByIdResponce;
-import org.example.lab1.entities.LabWork;
-import org.example.lab1.entities.enums.Role;
-import org.example.lab1.entities.User;
+import org.IS.lab1.ResponceFormate.filterGroupByIdResponce;
+import org.IS.lab1.Service.*;
+import org.IS.lab1.Service.Builder.BuilderHistory;
+import org.IS.lab1.entities.LabWork;
+import org.IS.lab1.entities.User;
+import org.IS.lab1.entities.enums.Role;
 import org.example.lab1.Service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -85,7 +86,7 @@ public class FilterController {
     private ResponseEntity<String> deleteDiscipline(@PathVariable long id, HttpServletRequest request) {
         User user = userService.getByUsername(jwtService.extractUsername(jwtService.resolveToken(request)));
         LabWork labWork = labWorkService.findById(id);
-        if(Objects.equals(user.getUsername(), labWorkService.findById(id).getUsername()) || (user.getRole()==Role.ROLE_ADMIN && labWork.isPermission())) {
+        if(Objects.equals(user.getUsername(), labWorkService.findById(id).getUsername()) || (user.getRole()== Role.ROLE_ADMIN && labWork.isPermission())) {
             labWork.setDiscipline(null);
             labWorkService.update(labWork,user.getUsername());
             BuilderHistory builderHistory =new BuilderHistory();

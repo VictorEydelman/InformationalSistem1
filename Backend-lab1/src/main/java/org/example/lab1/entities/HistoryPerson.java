@@ -1,9 +1,9 @@
-package org.example.lab1.entities;
+package org.IS.lab1.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.lab1.entities.enums.Color;
-import org.example.lab1.entities.enums.Country;
+import org.IS.lab1.entities.enums.Color;
+import org.IS.lab1.entities.enums.Country;
 
 @Data
 @Builder

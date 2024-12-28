@@ -1,13 +1,10 @@
-package org.example.lab1.entities.DTO;
+package org.IS.lab1.entities.DTO;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.example.lab1.entities.enums.Color;
-import org.example.lab1.entities.enums.Country;
-import org.example.lab1.entities.enums.Difficulty;
+import org.IS.lab1.entities.enums.Difficulty;
 
 import java.util.Date;
 

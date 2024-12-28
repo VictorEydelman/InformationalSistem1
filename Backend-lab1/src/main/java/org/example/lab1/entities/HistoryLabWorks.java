@@ -1,8 +1,8 @@
-package org.example.lab1.entities;
+package org.IS.lab1.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.lab1.entities.enums.Difficulty;
+import org.IS.lab1.entities.enums.Difficulty;
 
 @Data
 @Builder

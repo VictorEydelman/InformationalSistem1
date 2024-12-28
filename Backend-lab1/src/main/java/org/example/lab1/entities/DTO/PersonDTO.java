@@ -1,13 +1,13 @@
-package org.example.lab1.entities.DTO;
+package org.IS.lab1.entities.DTO;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.example.lab1.entities.Location;
-import org.example.lab1.entities.enums.Color;
-import org.example.lab1.entities.enums.Country;
+import org.IS.lab1.entities.Location;
+import org.IS.lab1.entities.enums.Color;
+import org.IS.lab1.entities.enums.Country;
 
 @Data
 public class PersonDTO {

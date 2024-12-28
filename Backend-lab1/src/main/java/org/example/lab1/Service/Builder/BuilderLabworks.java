@@ -1,8 +1,11 @@
-package org.example.lab1.Service.Builder;
+package org.IS.lab1.Service.Builder;
 
-import org.example.lab1.entities.DTO.LabWorkDTO;
-import org.example.lab1.entities.*;
+
+import org.IS.lab1.Service.*;
+import org.IS.lab1.entities.*;
 import org.example.lab1.Service.*;
+import org.example.lab1.entities.*;
+import org.IS.lab1.entities.DTO.LabWorkDTO;
 
 import java.util.Date;
 

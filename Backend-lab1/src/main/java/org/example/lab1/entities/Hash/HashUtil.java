@@ -1,4 +1,4 @@
-package org.example.lab1.entities.Hash;
+package org.IS.lab1.entities.Hash;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

@@ -1,8 +1,8 @@
-package org.example.lab1.entities;
+package org.IS.lab1.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.lab1.entities.enums.Role;
+import org.IS.lab1.entities.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

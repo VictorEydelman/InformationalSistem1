@@ -1,13 +1,13 @@
-package org.example.lab1.Controller;
+package org.IS.lab1.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.example.lab1.entities.DTO.ToRoleAdminDTO;
-import org.example.lab1.entities.enums.Role;
-import org.example.lab1.entities.ToRoleAdmin;
-import org.example.lab1.entities.User;
-import org.example.lab1.Service.ToRoleAdminService;
-import org.example.lab1.Service.UserService;
+import org.IS.lab1.Service.ToRoleAdminService;
+import org.IS.lab1.Service.UserService;
+import org.IS.lab1.entities.ToRoleAdmin;
+import org.IS.lab1.entities.User;
+import org.IS.lab1.entities.enums.Role;
+import org.IS.lab1.entities.DTO.ToRoleAdminDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class RoleAdminController {
 
     @PostMapping(value = "/addAdmin", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<String> addAdmin(@RequestBody ToRoleAdminDTO toRoleAdminDTO, HttpServletRequest request) {
-        if(userService.getByUsername(toRoleAdminDTO.getUsernameAdmin()).getRole()==Role.ROLE_ADMIN && toRoleAdminService.findByUsername(toRoleAdminDTO.getUsername())!=null) {
+        if(userService.getByUsername(toRoleAdminDTO.getUsernameAdmin()).getRole()== Role.ROLE_ADMIN && toRoleAdminService.findByUsername(toRoleAdminDTO.getUsername())!=null) {
             User user = userService.getByUsername(toRoleAdminDTO.getUsername());
             User user1 = User.builder().username(user.getUsername())
                     .password(user.getPassword()).id(user.getId()).role(Role.ROLE_ADMIN).build();

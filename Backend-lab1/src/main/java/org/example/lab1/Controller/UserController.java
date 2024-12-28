@@ -1,12 +1,12 @@
-package org.example.lab1.Controller;
+package org.IS.lab1.Controller;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.example.lab1.entities.Hash.HashUtil;
-import org.example.lab1.entities.DTO.UserDTO;
-import org.example.lab1.entities.User;
-import org.example.lab1.Service.AuthntificationService;
-import org.example.lab1.Service.UserService;
+import org.IS.lab1.Service.AuthntificationService;
+import org.IS.lab1.Service.UserService;
+import org.IS.lab1.entities.Hash.HashUtil;
+import org.IS.lab1.entities.User;
+import org.IS.lab1.entities.DTO.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

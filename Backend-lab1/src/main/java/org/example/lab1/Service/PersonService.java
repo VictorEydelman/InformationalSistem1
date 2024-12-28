@@ -1,11 +1,12 @@
-package org.example.lab1.Service;
+package org.IS.lab1.Service;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.example.lab1.entities.enums.Color;
-import org.example.lab1.entities.enums.Country;
-import org.example.lab1.entities.Location;
-import org.example.lab1.entities.Person;
+
+import org.IS.lab1.entities.Location;
+import org.IS.lab1.entities.Person;
+import org.IS.lab1.entities.enums.Color;
+import org.IS.lab1.entities.enums.Country;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

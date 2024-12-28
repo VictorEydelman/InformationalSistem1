@@ -1,4 +1,4 @@
-package org.example.lab1.entities.DTO;
+package org.IS.lab1.entities.DTO;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;

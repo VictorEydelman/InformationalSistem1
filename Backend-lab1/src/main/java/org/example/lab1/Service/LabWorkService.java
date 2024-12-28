@@ -1,8 +1,9 @@
-package org.example.lab1.Service;
+package org.IS.lab1.Service;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.example.lab1.ResponceFormate.filterGroupByIdResponce;
+import org.IS.lab1.ResponceFormate.filterGroupByIdResponce;
+import org.IS.lab1.entities.*;
 import org.example.lab1.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -163,7 +164,7 @@ public class LabWorkService {
                           Discipline[] disciplines, LabWork[] labWorks,
                           CoordinateSevice coordinateSevice, DisciplineService disciplineService,
                           LocationService locationService, PersonService personService,
-                          MultipartFile file, User user,FileService fileService) {
+                          MultipartFile file, User user, FileService fileService) {
         try {
             fileService.uploadUserFile(file,user);
 
