@@ -1,10 +1,7 @@
-package org.IS.lab1.Service.Builder;
+package org.example.lab1.Service.Builder;
 
-import org.IS.lab1.Service.*;
-import org.IS.lab1.entities.*;
-import org.example.lab1.entities.*;
 import org.example.lab1.Service.*;
-
+import org.example.lab1.entities.*;
 public class BuilderHistory {
     public void add(LabWork labWork, String action, String username, HistoryLabWorkService historyLabWorkService, HistoryCoordinateSevice historyCoordinateSevice, HistoryDisciplineService historyDisciplineService, HistoryLocationService historyLocationService, HistoryPersonService historyPersonService){
         HistoryCoordinates historyCoordinates = HistoryCoordinates.builder()

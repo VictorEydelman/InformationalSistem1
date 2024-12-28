@@ -1,10 +1,10 @@
-package org.IS.lab1.Service;
+package org.example.lab1.Service;
 
 import lombok.AllArgsConstructor;
-import org.IS.lab1.entities.Hash.HashUtil;
-import org.IS.lab1.entities.User;
-import org.IS.lab1.entities.enums.Role;
-import org.IS.lab1.entities.DTO.UserDTO;
+import org.example.lab1.entities.Hash.HashUtil;
+import org.example.lab1.entities.User;
+import org.example.lab1.entities.enums.Role;
+import org.example.lab1.entities.DTO.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;

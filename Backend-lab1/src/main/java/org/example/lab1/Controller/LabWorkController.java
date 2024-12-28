@@ -1,18 +1,16 @@
-package org.IS.lab1.Controller;
+package org.example.lab1.Controller;
 
 import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.IS.lab1.Service.*;
-import org.IS.lab1.Service.Builder.BuilderHistory;
-import org.IS.lab1.Service.Builder.BuilderLabworks;
-import org.IS.lab1.entities.*;
-import org.IS.lab1.entities.DTO.FileDTO;
-import org.IS.lab1.entities.enums.Role;
-import org.example.lab1.entities.*;
-import org.IS.lab1.entities.DTO.LabWorkDTO;
 import org.example.lab1.Service.*;
+import org.example.lab1.Service.Builder.BuilderHistory;
+import org.example.lab1.Service.Builder.BuilderLabworks;
+import org.example.lab1.entities.*;
+import org.example.lab1.entities.DTO.FileDTO;
+import org.example.lab1.entities.enums.Role;
+import org.example.lab1.entities.DTO.LabWorkDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -98,6 +97,10 @@ public class LabWorkController {
     }
     @PostMapping(value = "/addfile", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<String> addfile(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+        String filename = file.getOriginalFilename();
+        if (filename != null && !filename.endsWith(".json")) {
+            return ResponseEntity.badRequest().body("Error");
+        }
         StringBuilder jsonStringBuilder = new StringBuilder();
         System.out.println(file);
         try {
@@ -123,18 +126,16 @@ public class LabWorkController {
             System.out.println(129213891);
             System.out.println(items.length);
             String status="";
-            // Парсинг JSON-строки
-            boolean t=true;
             try {
                 for (int i=0;i<items.length;i++) {
-
                     var item=items[i];
-                    if(item.coordinates.getY()==null ||(item.discipline.getName() == null) || (item.discipline.getLectureHours() == null)
+                    System.out.println(item);
+                    /*if(item.coordinates.getY()==null ||(item.discipline.getName() == null) || (item.discipline.getLectureHours() == null)
                     ||(item.Person.getLocation().getX()==null) || (item.Person.getLocation().getY()==null) || (item.getPerson().getLocation()==null)
                     || item.getPerson().getHairColor()==null || item.getPerson().getEyeColor()==null || item.getPerson().getNationality()==null){
                         status="не успешно";
                         break;
-                    }
+                    }*/
                     System.out.println(i);
                     coordinates[i] = Coordinates.builder().x(item.coordinates.getX()).y(item.coordinates.getY()).build();
                     System.out.println(coordinates[i]);
@@ -146,7 +147,7 @@ public class LabWorkController {
                         disciplines[i]=null;
                     }
                     System.out.println(disciplines[i]);
-
+                    System.out.println(item.getPerson().getLocation());
                     locations[i] = Location.builder().x(item.Person.getLocation().getX())
                             .y(item.Person.getLocation().getY()).z(item.Person.getLocation().getZ()).build();
                     System.out.println(locations[i]);
@@ -164,7 +165,6 @@ public class LabWorkController {
                             .averagePoint(item.averagePoint).person(person[i]).permission(item.permission)
                             .Username(user.getUsername()).creationDate(new Date())
                             .build();
-                    System.out.println(1);
                 }
 
             } catch (NullPointerException e){
@@ -174,13 +174,19 @@ public class LabWorkController {
                 status="не успешно";
             }
             System.out.println(status);
+            byte[] fileminio=null;
+            List<String> s=new ArrayList<>();
+            s.add("");
+            s.add(file.getOriginalFilename());
             if(!status.equals("не успешно")){
-                status = labWorkService.saveAll(coordinates, locations, person, disciplines, labWorks,
+                s = labWorkService.saveAll(coordinates, locations, person, disciplines, labWorks,
                         coordinateSevice, disciplineService, locationService, personService,file,user,fileService);
+                status=s.get(0);
+                fileminio=fileService.readFile(file.getOriginalFilename(),user);
             }
             HistoryFile historyFile = HistoryFile.builder().lenght(items.length)
                     .status(status)
-                    .jsonString(jsonString).username(user.getUsername()).build();
+                    .jsonString(jsonString).username(user.getUsername()).file(fileminio).filename(s.get(1)).build();
             historyFileService.add(historyFile);
             if(status.equals("успешно")){
                 return ResponseEntity.ok("File Content: " + jsonString);
@@ -200,6 +206,7 @@ public class LabWorkController {
         } else {
             n = historyFileService.getbyuser(user);
         }
+
         return ResponseEntity.ok(n);
     }
 }

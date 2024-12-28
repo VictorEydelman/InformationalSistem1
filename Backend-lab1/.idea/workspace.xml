@@ -10,14 +10,78 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="169c4230-144d-4d1d-8ee8-1dda6ca05874" name="Changes" comment="finish">
-      <change afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/History.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/t.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab1/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab1/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab1/.idea/vcs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/co.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/co.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Lab1_jar/Lab1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Controller/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Controller/FilterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Controller/LabWorkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Controller/LabWorkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Controller/RoleAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Controller/RoleAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Lab1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Lab1Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/AuthntificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/AuthntificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/Builder/BuilderHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/Builder/BuilderHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/Builder/BuilderLabworks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/Builder/BuilderLabworks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/CoordinateSevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/CoordinateSevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/DisciplineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/DisciplineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/LabWorkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/LabWorkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/Service/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/config/JWTFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/config/JWTFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/entities/DTO/LabWorkDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/entities/DTO/LabWorkDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab1/entities/DTO/PersonDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab1/entities/DTO/PersonDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/Controller/LabWorkController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/lab1/Controller/LabWorkController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/Lab1Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/ResponceFormate/FilterGroupByIdResponce$FilterGroupByIdResponceBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/lab1/ResponceFormate/FilterGroupByIdResponce$FilterGroupByIdResponceBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/ResponceFormate/FilterGroupByIdResponce.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/lab1/ResponceFormate/FilterGroupByIdResponce.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/Service/CoordinateSevice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/lab1/Service/CoordinateSevice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/Service/DisciplineService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/lab1/Service/DisciplineService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/Service/LabWorkService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/lab1/Service/LabWorkService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/Service/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/lab1/Service/PersonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/Coordinates$CoordinatesBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/Coordinates.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/DTO/DisciplineDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/DTO/FilterByIdDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/DTO/LabWorkDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/DTO/LocationDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/DTO/PersonDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/DTO/ToRoleAdminDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/DTO/UserDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/Discipline$DisciplineBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/Discipline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryCoordinates$HistoryCoordinatesBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryCoordinates.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryDiscipline$HistoryDisciplineBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryDiscipline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryLabWorks$HistoryLabWorksBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryLabWorks.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryLocation$HistoryLocationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryLocation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryPerson$HistoryPersonBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/HistoryPerson.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/LabWork$LabWorkBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/LabWork.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/Location$LocationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/Location.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/Person$PersonBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/Person.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/ToRoleAdmin$ToRoleAdminBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/ToRoleAdmin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/User$UserBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/enums/Color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/enums/Country.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/enums/Difficulty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/lab1/entities/enums/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/Add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/Add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/History.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/History.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-lab1/vue/src/t.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-lab1/vue/src/t.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +147,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15544042&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.3773148&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -110,7 +174,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.Lab1Application">
     <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
       <setting name="displayName" value="" />
       <setting name="bbPath" value="" />
@@ -141,6 +205,13 @@
       <setting name="focusEditor" value="false" />
       <setting name="urlFile" value="" />
       <method v="2" />
+    </configuration>
+    <configuration name="Lab1Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Lab1" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.IS.lab1.Lab1Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Lab1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Lab1" />
@@ -236,7 +307,11 @@
       <workItem from="1734067374740" duration="595000" />
       <workItem from="1734084793591" duration="16858000" />
       <workItem from="1734107976921" duration="15619000" />
-      <workItem from="1734157199836" duration="17909000" />
+      <workItem from="1734157199836" duration="20648000" />
+      <workItem from="1734196061752" duration="10382000" />
+      <workItem from="1734249339942" duration="1683000" />
+      <workItem from="1734343167826" duration="5689000" />
+      <workItem from="1735219191307" duration="327000" />
     </task>
     <task id="LOCAL-00001" summary="finish">
       <option name="closed" value="true" />
@@ -276,6 +351,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
     <MESSAGE value="finish" />
     <option name="LAST_COMMIT_MESSAGE" value="finish" />
   </component>

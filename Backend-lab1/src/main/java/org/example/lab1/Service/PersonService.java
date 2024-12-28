@@ -1,18 +1,19 @@
-package org.IS.lab1.Service;
+package org.example.lab1.Service;
 
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
-import org.IS.lab1.entities.Location;
-import org.IS.lab1.entities.Person;
-import org.IS.lab1.entities.enums.Color;
-import org.IS.lab1.entities.enums.Country;
+import org.example.lab1.entities.Location;
+import org.example.lab1.entities.Person;
+import org.example.lab1.entities.enums.Color;
+import org.example.lab1.entities.enums.Country;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -21,7 +22,7 @@ public class PersonService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public void add(Person person){
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -44,15 +45,17 @@ public class PersonService {
                        double weight, Country nationality){
         Session session = sessionFactory.openSession();
         String hql = "FROM Person l WHERE l.name = :name and l.eyeColor = :eyeColor " +
-                "and l.hairColor = :hairColor and l.location = :location and l.weight = :weight" +
+                "and l.hairColor = :hairColor and l.weight = :weight" +
                 " and l.nationality = :nationality";
         Query<Person> queue=session.createQuery(hql, Person.class);
         queue.setParameter("name", name);
         queue.setParameter("eyeColor", eyeColor);
         queue.setParameter("hairColor", hairColor);
-        queue.setParameter("location", location);
         queue.setParameter("weight", weight);
         queue.setParameter("nationality", nationality);
+        System.out.println(999912389);
+        System.out.println(!queue.list().isEmpty());
+        System.out.println(123456);
         if(!queue.list().isEmpty()){
             return queue.list().get(0);
         } else{
@@ -69,27 +72,6 @@ public class PersonService {
             return queue.list().get(0);
         } else{
             return null;
-        }
-    }
-    public void saves(Person[] persons) {
-        Transaction transaction = null;
-
-        try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
-
-            for (Person person:persons) {
-                session.persist(person);
-            }
-
-            transaction.commit();
-            System.out.println("Items saved successfully!");
-
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                System.out.println("Transaction rolled back.");
-            }
-            e.printStackTrace();
         }
     }
 }

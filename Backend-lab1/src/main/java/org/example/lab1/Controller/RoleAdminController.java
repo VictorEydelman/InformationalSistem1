@@ -1,13 +1,13 @@
-package org.IS.lab1.Controller;
+package org.example.lab1.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.IS.lab1.Service.ToRoleAdminService;
-import org.IS.lab1.Service.UserService;
-import org.IS.lab1.entities.ToRoleAdmin;
-import org.IS.lab1.entities.User;
-import org.IS.lab1.entities.enums.Role;
-import org.IS.lab1.entities.DTO.ToRoleAdminDTO;
+import org.example.lab1.Service.ToRoleAdminService;
+import org.example.lab1.Service.UserService;
+import org.example.lab1.entities.ToRoleAdmin;
+import org.example.lab1.entities.User;
+import org.example.lab1.entities.enums.Role;
+import org.example.lab1.entities.DTO.ToRoleAdminDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

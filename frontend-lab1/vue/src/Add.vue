@@ -371,24 +371,34 @@ export default {
       this.$router.push({name: 'history'});
     },
     fileUpload(){
-      this.file=this.$refs.file.files[0]
+      if (!this.$refs.file.files[0].name.endsWith('.json')) {
+        this.file='';
+        this.$refs.file.value = '';
+        alert('Пожалуйста, загрузите файл в формате JSON.')
+      } else {
+        this.file=this.$refs.file.files[0]
+      }
     },
     download() {
       const formData = new FormData();
       formData.append('file', this.file);
-      fetch("http://localhost:1298/api/LabWork/addfile", {
-        method: "POST",
-        headers: new Headers({
-          'Authorization': 'Bearer ' + localStorage.getItem("jwt")
-        }),
-        body: formData
-      }).then((response) => {
-        if (response.ok) {
-          window.close()
-        } else {
-          alert("Неверно введённые данные")
-        }
-      })
+      if (this.file!=="") {
+        fetch("http://localhost:1298/api/LabWork/addfile", {
+          method: "POST",
+          headers: new Headers({
+            'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+          }),
+          body: formData
+        }).then((response) => {
+          if (response.ok) {
+            window.close()
+          } else {
+            alert("Неверно введённые данные")
+          }
+        })
+      } else {
+        alert("Выберете файл")
+      }
     }
   },
   created(){

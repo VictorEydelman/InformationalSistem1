@@ -1,14 +1,13 @@
-package org.IS.lab1.Controller;
+package org.example.lab1.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.IS.lab1.ResponceFormate.filterGroupByIdResponce;
-import org.IS.lab1.Service.*;
-import org.IS.lab1.Service.Builder.BuilderHistory;
-import org.IS.lab1.entities.LabWork;
-import org.IS.lab1.entities.User;
-import org.IS.lab1.entities.enums.Role;
+import org.example.lab1.ResponceFormate.filterGroupByIdResponce;
 import org.example.lab1.Service.*;
+import org.example.lab1.Service.Builder.BuilderHistory;
+import org.example.lab1.entities.LabWork;
+import org.example.lab1.entities.User;
+import org.example.lab1.entities.enums.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -137,7 +137,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.example.lab1.Lab1Application</mainClass>
+                            <mainClass>org.IS.lab1.Lab1Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

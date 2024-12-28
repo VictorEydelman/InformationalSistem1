@@ -10,6 +10,18 @@ export default {
     close(){
       this.$router.push({name: 'add'});
     },
+    downloadFile(byte,name) {
+      const byteArray = new Uint8Array(byte);
+      const blob = new Blob([byteArray], { type: 'application/octet-stream' }); // Укажите правильный MIME тип
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
   },
   mounted: function () {
     window.setInterval(() => {
@@ -25,7 +37,7 @@ export default {
           this.dots = request
         }
       )
-    }, 3000)
+    }, 1000)
   },
 }
 </script>
@@ -42,7 +54,7 @@ export default {
       <th style="width: 5%">status</th>
       <th style="width: 5%">пользователь</th>
       <th style="width: 5%">количество</th>
-      <th>Текст файла</th>
+      <th>файла</th>
     </tr>
     </thead>
     <tr v-for="dot in dots" :key="dot">
@@ -50,7 +62,7 @@ export default {
       <td style="width: 5%">{{dot.status}}</td>
       <td style="width: 5%">{{dot.username}}</td>
       <td style="width: 5%">{{dot.lenght}}</td>
-      <td>{{dot.jsonString}}</td>
+      <td><button @click="downloadFile(dot.file,dot.filename)">Скачать файл</button></td>
     </tr>
   </table>
   </div>

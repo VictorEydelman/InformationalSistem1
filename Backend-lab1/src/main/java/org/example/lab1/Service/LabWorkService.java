@@ -1,9 +1,9 @@
-package org.IS.lab1.Service;
+package org.example.lab1.Service;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.IS.lab1.ResponceFormate.filterGroupByIdResponce;
-import org.IS.lab1.entities.*;
+import org.example.lab1.ResponceFormate.filterGroupByIdResponce;
+import org.example.lab1.entities.*;
 import org.example.lab1.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -159,14 +159,14 @@ public class LabWorkService {
         }
     }
     @Transactional
-    public String saveAll(Coordinates[] coordinates, Location[] locations,
+    public List<String> saveAll(Coordinates[] coordinates, Location[] locations,
                           Person[] persons,
                           Discipline[] disciplines, LabWork[] labWorks,
                           CoordinateSevice coordinateSevice, DisciplineService disciplineService,
                           LocationService locationService, PersonService personService,
                           MultipartFile file, User user, FileService fileService) {
         try {
-            fileService.uploadUserFile(file,user);
+            String filename=fileService.uploadUserFile(file,user);
 
             for (Coordinates entity : coordinates) {
                 coordinateSevice.add(entity);
@@ -181,18 +181,25 @@ public class LabWorkService {
             }
 
             for (Person person:persons) {
-                personService.add(person);
+                if(personService.find(person.getName(),person.getEyeColor(),person.getHairColor(),person.getLocation(),
+                        person.getWeight(),person.getNationality())==null) {
+                    personService.add(person);
+                }
             }
 
             for (LabWork labWork:labWorks) {
                 add(labWork);
             }
-            return "успешно";
+            List<String> l =new ArrayList<>();
+            l.add("успешно");
+            l.add(filename);
+            return l;
         } catch (Exception e) {
             // Логирование ошибки или обработка исключения
             //throw new RuntimeException("Ошибка при сохранении данных", e);
-
-            return "не успешно";
+            List<String> l =new ArrayList<>();
+            l.add("успешно");
+            return l;
         }
     }
 }

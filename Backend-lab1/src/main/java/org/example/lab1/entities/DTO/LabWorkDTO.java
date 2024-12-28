@@ -1,10 +1,10 @@
-package org.IS.lab1.entities.DTO;
+package org.example.lab1.entities.DTO;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.IS.lab1.entities.enums.Difficulty;
+import org.example.lab1.entities.enums.Difficulty;
 
 import java.util.Date;
 

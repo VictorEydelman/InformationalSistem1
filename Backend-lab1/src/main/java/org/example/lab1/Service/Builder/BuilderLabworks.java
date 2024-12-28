@@ -1,11 +1,9 @@
-package org.IS.lab1.Service.Builder;
+package org.example.lab1.Service.Builder;
 
 
-import org.IS.lab1.Service.*;
-import org.IS.lab1.entities.*;
 import org.example.lab1.Service.*;
 import org.example.lab1.entities.*;
-import org.IS.lab1.entities.DTO.LabWorkDTO;
+import org.example.lab1.entities.DTO.LabWorkDTO;
 
 import java.util.Date;
 
@@ -40,7 +38,10 @@ public class BuilderLabworks {
                         .hairColor(labWorkDTO.getPerson().getHairColor()).weight(labWorkDTO.getPerson().getWeight())
                         .nationality(labWorkDTO.getPerson().getNationality()).name(labWorkDTO.getPerson().getName())
                         .location(location).build();
-                personService.add(person);
+                if(personService.find(person.getName(),person.getEyeColor(),person.getHairColor(),person.getLocation(),
+                        person.getWeight(),person.getNationality())==null) {
+                    personService.add(person);
+                }
             }
         }
         return LabWork.builder().name(labWorkDTO.getName())
@@ -104,7 +105,10 @@ public class BuilderLabworks {
                         Person person1 = Person.builder().name(labWorkDTO.getName()).eyeColor(labWorkDTO.getPerson().getEyeColor())
                                 .hairColor(labWorkDTO.getPerson().getHairColor()).weight(labWorkDTO.getPerson().getWeight())
                                 .nationality(labWorkDTO.getPerson().getNationality()).location(location).build();
-                        personService.add(person1);
+                        if(personService.find(person.getName(),person.getEyeColor(),person.getHairColor(),person.getLocation(),
+                                person.getWeight(),person.getNationality())==null) {
+                            personService.add(person1);
+                        }
                     } else {
                         personService.update(person);
                     }
@@ -117,7 +121,10 @@ public class BuilderLabworks {
                 person = Person.builder().name(labWorkDTO.getName()).eyeColor(labWorkDTO.getPerson().getEyeColor())
                         .hairColor(labWorkDTO.getPerson().getHairColor()).weight(labWorkDTO.getPerson().getWeight())
                         .nationality(labWorkDTO.getPerson().getNationality()).location(location).build();
-                personService.add(person);
+                if(personService.find(person.getName(),person.getEyeColor(),person.getHairColor(),person.getLocation(),
+                        person.getWeight(),person.getNationality())==null) {
+                    personService.add(person);
+                }
             }
         }
         return LabWork.builder().name(labWorkDTO.getName()).id(labWorkDTO.getId())
