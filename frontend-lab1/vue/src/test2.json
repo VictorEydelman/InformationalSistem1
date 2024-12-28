@@ -1,0 +1,44 @@
+[
+  {
+    "name": "ads",
+    "coordinates": {"x":1,"y":1},
+    "description": "sdad",
+    "difficulty": "EASY",
+    "discipline": {
+      "name": "dsafs",
+      "lectureHours": 2
+    },
+    "minimalPoint": 3,
+    "averagePoint": 3,
+    "Person": {
+      "name": "12sdfs00dfgfd45ewqe3543wewegrtdf3",
+      "eyeColor": "RED",
+      "hairColor": "RED",
+      "location": {"x": 2341, "y": 2, "z": 3},
+      "weight": 2,
+      "nationality": "CHINA"
+    },
+    "permission": true
+  },
+  {
+    "name": "ads",
+    "coordinates": {"x":1,"y":1},
+    "description": "sdad",
+    "difficulty": "EASY",
+    "discipline": {
+      "name": "dsafs",
+      "lectureHours": 2
+    },
+    "minimalPoint": 3,
+    "averagePoint": 3,
+    "Person": {
+      "name": "17890dfgdgg2sasddadf23423sdfsythgf989f3",
+      "eyeColor": "RED",
+      "hairColor": "RED",
+      "location": {"x": 132423, "y": 2, "z": 3},
+      "weight": 2,
+      "nationality": "CHINA"
+    },
+    "permission": true
+  }
+]
