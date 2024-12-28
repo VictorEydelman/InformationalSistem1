@@ -1,4 +1,4 @@
-package org.IS.lab1.entities.enums;
+package org.example.lab1.entities.enums;
 
 public enum Difficulty {
     EASY,

@@ -1,4 +1,4 @@
-package org.IS.lab1.ResponceFormate;
+package org.example.lab1.ResponceFormate;
 
 import lombok.*;
 

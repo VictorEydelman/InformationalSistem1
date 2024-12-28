@@ -1,7 +1,7 @@
-package org.IS.lab1.Service;
+package org.example.lab1.Service;
 
 import jakarta.persistence.NoResultException;
-import org.IS.lab1.entities.User;
+import org.example.lab1.entities.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

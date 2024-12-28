@@ -1,8 +1,8 @@
-package org.IS.lab1.config;
+package org.example.lab1.config;
 
 import lombok.AllArgsConstructor;
 //import org.example.lab1.config.JWTFilter;
-import org.IS.lab1.Service.UserService;
+import org.example.lab1.Service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;

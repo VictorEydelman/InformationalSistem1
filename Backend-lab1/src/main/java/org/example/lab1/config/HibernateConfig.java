@@ -1,4 +1,4 @@
-package org.IS.lab1.config;
+package org.example.lab1.config;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;

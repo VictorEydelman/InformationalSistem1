@@ -1,4 +1,4 @@
-package org.IS.lab1.entities.DTO;
+package org.example.lab1.entities.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

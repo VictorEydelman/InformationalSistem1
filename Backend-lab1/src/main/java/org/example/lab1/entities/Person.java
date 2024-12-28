@@ -1,9 +1,9 @@
-package org.IS.lab1.entities;
+package org.example.lab1.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.IS.lab1.entities.enums.Color;
-import org.IS.lab1.entities.enums.Country;
+import org.example.lab1.entities.enums.Color;
+import org.example.lab1.entities.enums.Country;
 import org.hibernate.annotations.Check;
 
 @Data

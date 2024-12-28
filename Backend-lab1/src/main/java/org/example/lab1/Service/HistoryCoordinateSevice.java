@@ -1,7 +1,7 @@
-package org.IS.lab1.Service;
+package org.example.lab1.Service;
 
 import lombok.AllArgsConstructor;
-import org.IS.lab1.entities.HistoryCoordinates;
+import org.example.lab1.entities.HistoryCoordinates;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
